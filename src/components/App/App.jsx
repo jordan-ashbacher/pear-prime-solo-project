@@ -19,6 +19,7 @@ import InfoPage from '../InfoPage/InfoPage';
 import LandingPage from '../LandingPage/LandingPage';
 import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
+import Home from '../Home/Home'
 
 import './App.css';
 
@@ -65,6 +66,17 @@ function App() {
           >
             <InfoPage />
           </ProtectedRoute>
+          <ProtectedRoute 
+            exact 
+            path="/"
+          >
+            <Home />
+          </ProtectedRoute>
+          <ProtectedRoute  
+            path="/home"
+          >
+            <Home />
+          </ProtectedRoute>
 
           {/* When a value is supplied for the authRedirect prop the user will
             be redirected to the path supplied when logged in, otherwise they will
@@ -75,7 +87,7 @@ function App() {
             // - else shows LoginPage at /login
             exact
             path="/login"
-            authRedirect="/user"
+            authRedirect="/home"
           >
             <LoginPage />
           </ProtectedRoute>
@@ -86,7 +98,7 @@ function App() {
             // - else shows RegisterPage at "/registration"
             exact
             path="/registration"
-            authRedirect="/user"
+            authRedirect="/home"
           >
             <RegisterPage />
           </ProtectedRoute>
@@ -97,10 +109,11 @@ function App() {
             // - else shows LandingPage at "/home"
             exact
             path="/home"
-            authRedirect="/user"
+            authRedirect="/home"
           >
             <LandingPage />
           </ProtectedRoute>
+          
 
           {/* If none of the other routes matched, we will show a 404. */}
           <Route>
