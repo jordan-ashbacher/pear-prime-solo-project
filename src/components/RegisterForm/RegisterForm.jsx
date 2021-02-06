@@ -2,8 +2,13 @@ import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 function RegisterForm() {
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
+  const [newUser, setNewUser] = useState({
+    firstName: '',
+    lastName: '',
+    username: '',
+    password: '',
+    city: ''
+  });
   const errors = useSelector((store) => store.errors);
   const dispatch = useDispatch();
 
@@ -12,12 +17,15 @@ function RegisterForm() {
 
     dispatch({
       type: 'REGISTER',
-      payload: {
-        username: username,
-        password: password,
-      },
+      payload: newUser,
     });
   }; // end registerUser
+
+  const handleChange = (e) => {
+    e.preventDefault()
+    const value = e.target.value
+    setNewUser({...newUser, [e.target.name]: value})
+  }
 
   return (
     <form className="formPanel" onSubmit={registerUser}>
@@ -28,14 +36,38 @@ function RegisterForm() {
         </h3>
       )}
       <div>
+        <label htmlFor="firstName">
+          First Name:
+          <input
+            type="text"
+            name="firstName"
+            value={newUser.firstName}
+            required
+            onChange={handleChange}
+          />
+        </label>
+      </div>
+      <div>
+        <label htmlFor="lastName">
+          Last Name:
+          <input
+            type="text"
+            name="lastName"
+            value={newUser.lastName}
+            required
+            onChange={handleChange}
+          />
+        </label>
+      </div>
+      <div>
         <label htmlFor="username">
           Username:
           <input
             type="text"
             name="username"
-            value={username}
+            value={newUser.username}
             required
-            onChange={(event) => setUsername(event.target.value)}
+            onChange={handleChange}
           />
         </label>
       </div>
@@ -45,9 +77,21 @@ function RegisterForm() {
           <input
             type="password"
             name="password"
-            value={password}
+            value={newUser.password}
             required
-            onChange={(event) => setPassword(event.target.value)}
+            onChange={handleChange}
+          />
+        </label>
+      </div>
+      <div>
+        <label htmlFor="city">
+          City:
+          <input
+            type="text"
+            name="city"
+            value={newUser.city}
+            required
+            onChange={handleChange}
           />
         </label>
       </div>
