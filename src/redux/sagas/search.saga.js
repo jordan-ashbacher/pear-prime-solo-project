@@ -6,6 +6,7 @@ function* searchRestaurants(action) {
         const query = action.payload
         const response = yield axios.get(`/api/search/${query}`)
         console.log(response.data)
+        yield put({ type: 'SET_SEARCH_RESULTS', payload: response.data })
     } catch(err) {
         console.log
     }
