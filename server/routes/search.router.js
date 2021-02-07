@@ -13,7 +13,12 @@ router.get('/:q', (req, res) => {
   axios
   .get(`https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=45.032490,-93.267290&radius=32000&type=restaurant&keyword=${query}&key=${process.env.GOOGLE_API_KEY}`)
   .then((response) => {
-      res.send(response.data.results)
+      const results = response.data.results.map((place) => ({
+          place_id: place.place_id,
+          name: place.name,
+          image: place.photos[0].photo_reference
+      }))
+      res.send(results)
   })
   .catch((err) => {
       console.log('Error in API request', err)
