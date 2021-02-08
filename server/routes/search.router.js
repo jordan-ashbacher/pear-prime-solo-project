@@ -2,6 +2,7 @@ const { default: axios } = require('axios');
 const express = require('express');
 const pool = require('../modules/pool');
 const router = express.Router();
+const request = require('request')
 require("dotenv").config();
 
 /**
@@ -30,20 +31,11 @@ router.get('/:q', (req, res) => {
 router.get('/image/:image', (req, res) => {
     const image = req.params.image
     console.log(image)
-
+    //Google Place Photo API request with photo_reference key from RestaurantItem
     const imageSearchURL = `https://maps.googleapis.com/maps/api/place/photo?maxwidth=600&photoreference=${image}&key=${process.env.GOOGLE_API_KEY}`
 
-    axios
-    .get(imageSearchURL)
-    .then((response) => {
-        const imageURL = response.request._redirectable._options.href
-        console.log(imageURL)
-        res.send(imageURL)
-    })
-    .catch((err) => {
-        console.log('Error in image request', err)
-        res.sendStatus(500)
-    })
+    //sends photo from Google Place to img src in RestaurantItem
+    request(imageSearchURL).pipe(res)
 
 })
 

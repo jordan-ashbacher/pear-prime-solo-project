@@ -3,6 +3,7 @@ import { put, takeEvery } from 'redux-saga/effects'
 
 function* searchRestaurants(action) {
     try {
+        yield put({ type: 'CLEAR_DETAILS'})
         const query = action.payload
         const response = yield axios.get(`/api/search/${query}`)
         console.log(response.data)
@@ -12,23 +13,8 @@ function* searchRestaurants(action) {
     }
 }
 
-function* fetchImage(action) {
-    console.log('in fetchImage')
-    const image = action.payload.image
-    
-    try{
-        const response = yield axios.get(`/api/search/image/${image}`)
-        const restaurantDetails = {...action.payload, imageURL: response.data}
-        console.log(restaurantDetails)
-        yield put({ type: 'SET_IMAGE_URL', payload: restaurantDetails})
-    } catch(err) {
-        console.log('error in fetchImage saga', err)
-    }
-}
-
 function* searchSaga() {
     yield takeEvery('SEARCH', searchRestaurants)
-    yield takeEvery('FETCH_IMAGE', fetchImage)
 }
 
 export default searchSaga

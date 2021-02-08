@@ -1,23 +1,16 @@
 import './RestaurantItem.css'
-import { useEffect } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
 
+// creates card for individual restaurant
 const RestaurantItem = ({ restaurant }) => {
-    console.log(restaurant)
-    const dispatch = useDispatch()
-
-    useEffect(() => dispatch({ type: 'FETCH_IMAGE', payload: restaurant}), [])
-
-    const details = useSelector(store => store.details)
-
+    console.log(restaurant.image)
 
     return (
         <>
-        <h2>{restaurant.name}</h2>
         <div>
-            <img src={details.imageURL} alt=""/>
+            <img src={`/api/search/image/${restaurant.image}`} alt=""/>
         </div>
-        
+        <h2>{restaurant.name}</h2>
+        <button>Favorite</button>
         </>
         
     )
