@@ -1,18 +1,21 @@
 import "./Home.css"
 import { useHistory } from "react-router-dom"
 import { useState } from "react"
-import { useDispatch } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 
 const Home = () => {
   const history = useHistory()
   const dispatch = useDispatch()
 
   const [location, setLocation] = useState('')
+  const [locationToggle, setLocationToggle] = useState(false)
+  const user = useSelector(store => store.user)
 
   const updateLocation = (e) => {
     e.preventDefault()
     dispatch({ type: 'UPDATE_LOCATION', payload: location})
     setLocation('')
+    setLocationToggle(!locationToggle)
   }
 
   const pushToSearch = () => {
@@ -30,7 +33,8 @@ const Home = () => {
   return (
     <div className="container">
       <h1>PEAR</h1>
-      <form onSubmit={updateLocation}>
+      {locationToggle ? (
+        <form onSubmit={updateLocation}>
         <input 
           type="text" 
           value={location}
@@ -38,6 +42,12 @@ const Home = () => {
         />
         <button type='submit'>Set Location</button>
       </form>
+      ) : (
+      <>
+      <h2>{user.city}</h2>
+      <p onClick={() => setLocationToggle(!locationToggle)}>Update Location</p>
+      </>
+      )}
       <button onClick={pushToSearch}>Add Your Favorite Restaurants</button>
       <button onClick={pushToFriends}>Add Your Friends</button>
       <button onClick={pushToPear}>PEAR</button>

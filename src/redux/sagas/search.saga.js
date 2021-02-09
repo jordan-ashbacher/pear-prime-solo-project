@@ -3,7 +3,6 @@ import { put, takeEvery } from 'redux-saga/effects'
 
 function* searchRestaurants(action) {
     try {
-        yield put({ type: 'CLEAR_DETAILS'})
         const query = action.payload
         const response = yield axios.get(`/api/search/${query}`)
         console.log(response.data)

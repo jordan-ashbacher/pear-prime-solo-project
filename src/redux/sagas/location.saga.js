@@ -4,6 +4,7 @@ import { put, takeEvery } from 'redux-saga/effects'
 function* updateLocation(action) {
     const city = action.payload
     yield axios.put(`/api/location/${city}`)
+    yield put({ type: 'FETCH_USER'})
 }
 
 function* locationSaga() {
