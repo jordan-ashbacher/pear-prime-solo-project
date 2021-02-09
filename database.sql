@@ -14,11 +14,20 @@ CREATE TABLE "user" (
     "city" VARCHAR (80) NOT NULL
 );
 
-CREATE TABLE "restaurant" (
-	"id" SERIAL PRIMARY KEY,
-	"name" VARCHAR(80) not null,
-	"image" varchar(1000) not null,
-	"place_id" varchar(100) not null
+CREATE TABLE restaurant (
+    "id" SERIAL PRIMARY KEY,
+    "city" VARCHAR (80) NOT NULL,
+    "address" VARCHAR (200) NOT NULL,
+    "phone" VARCHAR (20),
+    "name" VARCHAR (200) NOT NULL,
+    "photo1" VARCHAR (1000) NOT NULL,
+    "photo2" VARCHAR (1000),
+    "photo3" VARCHAR (1000),
+    "photo4" VARCHAR (1000),
+    "photo5" VARCHAR (1000),
+    "place_id" VARCHAR (200) NOT NULL,
+    "rating" numeric(2,1),
+    "website" VARCHAR (200)
 );
 
 CREATE TABLE "favorite" (

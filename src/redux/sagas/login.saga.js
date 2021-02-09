@@ -42,6 +42,7 @@ function* logoutUser(action) {
       headers: { 'Content-Type': 'application/json' },
       withCredentials: true,
     };
+    yield put({ type: 'CLEAR_DATA'})
 
     // the config includes credentials which
     // allow the server session to recognize the user
@@ -53,6 +54,7 @@ function* logoutUser(action) {
     // remove the client-side user object to let
     // the client-side code know the user is logged out
     yield put({ type: 'UNSET_USER' });
+    
   } catch (error) {
     console.log('Error with user logout:', error);
   }
