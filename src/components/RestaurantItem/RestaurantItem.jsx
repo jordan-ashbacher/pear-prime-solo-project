@@ -12,6 +12,7 @@ const RestaurantItem = ({ restaurant }) => {
         // console.log(user)
         // console.log(restaurant)
         dispatch({ type: 'ADD_FAVORITE', payload: restaurant})
+        dispatch({ type: 'ADD_RESTAURANT', payload: restaurant})
     }
 
     return (
