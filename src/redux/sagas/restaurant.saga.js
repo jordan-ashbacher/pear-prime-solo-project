@@ -4,15 +4,16 @@ import { put, takeEvery } from 'redux-saga/effects'
 function* addRestaurant(action) {
     try {
         const restaurant = action.payload
-        yield axios.post('/api/restaurant', restaurant)
+        yield axios.get(`/api/detail/${restaurant.place_id}`)
+        // yield axios.post('/api/restaurant', restaurant)
     } catch(err) {
         console.log('Error in addRestaurant saga', err)
     }
     
 }
 
-function* favoriteSaga() {
+function* restaurantSaga() {
     yield takeEvery('ADD_RESTAURANT', addRestaurant)
 }
 
-export default favoriteSaga
+export default restaurantSaga

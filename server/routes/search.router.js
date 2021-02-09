@@ -4,11 +4,14 @@ const pool = require('../modules/pool');
 const router = express.Router();
 const request = require('request')
 require("dotenv").config();
+const {
+  rejectUnauthenticated,
+} = require("../modules/authentication-middleware.js");
 
 /**
  * GET route template
  */
-router.get('/:q', (req, res) => {
+router.get('/:q', rejectUnauthenticated, (req, res) => {
   // GET route code here
   const query = req.params.q
   console.log(query)
