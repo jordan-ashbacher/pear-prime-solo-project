@@ -3,7 +3,6 @@ import loginSaga from './login.saga';
 import registrationSaga from './registration.saga';
 import userSaga from './user.saga';
 import searchSaga from './search.saga'
-import favoriteSaga from './favorite.saga'
 import restaurantSaga from './restaurant.saga'
 
 // rootSaga is the primary saga.
