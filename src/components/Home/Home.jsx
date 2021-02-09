@@ -12,6 +12,7 @@ const Home = () => {
   const updateLocation = (e) => {
     e.preventDefault()
     dispatch({ type: 'UPDATE_LOCATION', payload: location})
+    setLocation('')
   }
 
   const pushToSearch = () => {

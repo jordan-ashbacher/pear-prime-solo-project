@@ -5,6 +5,7 @@ const {
 const encryptLib = require('../modules/encryption');
 const pool = require('../modules/pool');
 const userStrategy = require('../strategies/user.strategy');
+const { default: axios } = require('axios');
 
 const router = express.Router();
 
@@ -24,15 +25,28 @@ router.post('/register', (req, res, next) => {
   const password = encryptLib.encryptPassword(req.body.password);
   const city = req.body.city
 
-  const queryText = `INSERT INTO "user" (first_name, last_name, username, password, city)
-    VALUES ($1, $2, $3, $4, $5) RETURNING id`;
+  axios
+  .get(`https://maps.googleapis.com/maps/api/place/textsearch/json?query=${city}&key=${process.env.GOOGLE_API_KEY}`)
+  .then(results => {
+    const lat = results.data.results[0].geometry.location.lat
+    const lng = results.data.results[0].geometry.location.lng
+
+    const queryText = `INSERT INTO "user" (first_name, last_name, username, password, city, lat, lng)
+    VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING id`;
   pool
-    .query(queryText, [firstName, lastName, username, password, city])
+    .query(queryText, [firstName, lastName, username, password, city, lat, lng])
     .then(() => res.sendStatus(201))
     .catch((err) => {
       console.log('User registration failed: ', err);
       res.sendStatus(500);
     });
+  })
+  .catch(err => {
+    console.log('Error in user registration', err)
+    res.sendStatus(500)
+  })
+
+  
 });
 
 // Handles login form authenticate/login POST
