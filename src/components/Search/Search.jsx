@@ -3,6 +3,7 @@ import { useState } from "react"
 import { useDispatch } from "react-redux"
 import { useHistory } from "react-router-dom"
 import RestaurantList from "../RestaurantList/RestaurantList"
+import Button from '@material-ui/core/Button'
 
 const Search = () => {
   const dispatch = useDispatch()
@@ -17,15 +18,16 @@ const Search = () => {
   }
 
   return (
-    <div className="container">
-      <h1>Find Your Favorite Restaurants</h1>
+    <div className="searchContainer">
       <form onSubmit={submitSearch}>
         <input
           type="text"
+          className="searchInput"
           value={newQuery}
+          placeholder="Find your favorite restaurants"
           onChange={(e) => setNewQuery(e.target.value)}
         />
-        <button type="submit">Search</button>
+        <Button className="searchButton" type="submit">Search</Button>
       </form>
       <RestaurantList />
     </div>

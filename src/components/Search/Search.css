@@ -1,1 +1,21 @@
- 
+ .searchContainer {
+     /* border: 1px solid pink; */
+     height: 100%;
+ }
+
+ form {
+     display: flex;
+     flex-flow: row;
+     justify-content: center;
+     height: 100px;
+ }
+
+ .searchInput {
+     width: 60%;
+     margin: 5px;
+ }
+
+ Button.searchButton {
+     display: inline;
+     width: 30%;
+ }

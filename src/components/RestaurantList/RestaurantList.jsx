@@ -7,12 +7,11 @@ const RestaurantList = () => {
   console.log(searchResults)
 
   return (
-    <>
-      <h1>Restaurant List</h1>
+    <div className="restaurantContainer">
       {searchResults.map((restaurant, i) => {
         return <RestaurantItem key={i} restaurant={restaurant} />
       })}
-    </>
+    </div>
   )
 }
 
