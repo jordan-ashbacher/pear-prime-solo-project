@@ -1,8 +1,52 @@
 .container {
     display: flex;
     flex-flow: column;
+    align-items: center;
+    height: 90vh;
 }
 
-button {
-    margin-bottom: 10px;
+.buttonContainer {
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    justify-content: space-between;
+    height: 50vh;
+    width: 80%;
+    /* border: 1px solid blue; */
+}
+
+.formContainer {
+    display: flex;
+    align-items: center;
+    width: 80%;
+    /* border: 1px solid black; */
+}
+
+form {
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    width: 100%;
+}
+
+.cityInput {
+    display: block;
+    width: 70%;
+}
+
+Button.submitButton {
+    /* border: 1px solid pink; */
+    align-self: center;
+    width: 70%;
+}
+
+.cityTitle {
+    /* border: 1px solid limegreen; */
+    font-size: 20px;
+    margin: 0;
+}
+
+.appTitle {
+    /* border: 1px solid blue; */
+    margin-bottom: 12px;
 }

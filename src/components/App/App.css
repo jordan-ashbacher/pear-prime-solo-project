@@ -1,7 +1,12 @@
+* {
+  box-sizing: border-box;
+}
+
 html,
 body,
 #react-root {
   height: 100%;
+  margin: 0;
 }
 
 body {

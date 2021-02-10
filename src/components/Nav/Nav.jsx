@@ -19,9 +19,6 @@ function Nav() {
 
   return (
     <div className="nav">
-      <Link to="/home">
-        <h2 className="nav-title">Prime Solo Project</h2>
-      </Link>
       <div>
         <Link className="navLink" to={loginLinkData.path}>
           {loginLinkData.text}
