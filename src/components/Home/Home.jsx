@@ -1,6 +1,6 @@
 import "./Home.css"
 import { useHistory, Link } from "react-router-dom"
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { makeStyles } from "@material-ui/core/styles"
 import Button from "@material-ui/core/Button"
@@ -18,6 +18,8 @@ const useStyles = makeStyles({
 })
 
 const Home = () => {
+  useEffect(() => dispatch({ type: 'FETCH_RESTAURANTS'}), [])
+
   const history = useHistory()
   const dispatch = useDispatch()
   const classes = useStyles()
@@ -62,7 +64,7 @@ const Home = () => {
         </div>
       ) : (
         <>
-          <h2 className="cityTitle">{user.city}</h2>
+          <h2 className="cityTitle">{user.current_location}</h2>
           <Button
             onClick={() => setLocationToggle(!locationToggle)}
             className={classes.updateButton}

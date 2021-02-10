@@ -26,7 +26,7 @@ router.put('/:city', rejectUnauthenticated, (req, res) => {
     console.log(location)
 
     const query = `UPDATE "user"
-                    SET "city" = $1, "lat" = $2, "lng" = $3
+                    SET "current_location" = $1, "lat" = $2, "lng" = $3
                     WHERE id = $4`
 
     pool

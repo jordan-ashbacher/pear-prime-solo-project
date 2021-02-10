@@ -21,6 +21,9 @@ import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
 import Home from '../Home/Home'
 import Search from '../Search/Search'
+import Favorites from '../Favorites/Favorites'
+import Pear from '../Pear/Pear'
+import FriendPage from '../FriendPage/FriendPage'
 
 import './App.css';
 
@@ -79,10 +82,32 @@ function App() {
             <Home />
           </ProtectedRoute>
 
-          <ProtectedRoute  
+          <ProtectedRoute
+            exact  
             path="/search"
           >
             <Search />
+          </ProtectedRoute>
+          
+          <ProtectedRoute
+            exact  
+            path="/favorites"
+          >
+            <Favorites />
+          </ProtectedRoute>
+          
+          <ProtectedRoute
+            exact  
+            path="/pear"
+          >
+            <Pear />
+          </ProtectedRoute>
+          
+          <ProtectedRoute
+            exact  
+            path="/friends"
+          >
+            <FriendPage />
           </ProtectedRoute>
 
           {/* When a value is supplied for the authRedirect prop the user will

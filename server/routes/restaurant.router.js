@@ -7,10 +7,8 @@ const {
     rejectUnauthenticated,
   } = require("../modules/authentication-middleware.js");
 
-/**
- * GET route template
- */
-router.get('/:id', rejectUnauthenticated, (req, res) => {
+
+router.post('/:id', rejectUnauthenticated, (req, res) => {
     // GET route code here
 
     const databaseQuery = `SELECT "id" from restaurant
@@ -89,11 +87,25 @@ router.get('/:id', rejectUnauthenticated, (req, res) => {
                       res.sendStatus(500)
                   })
         }
-    })
-  
-   
-  
+    }) 
   
   });
+
+ router.get('/', rejectUnauthenticated, (req, res) => {
+     const query = `SELECT * FROM restaurant
+     JOIN favorite ON restaurant.id = favorite.restaurant_id
+     JOIN "user" on "user".id = favorite.user_id
+     WHERE "user".id = $1 AND "user".current_location = restaurant.city`
+
+     pool
+     .query(query, [req.user.id])
+     .then(result => {
+         res.send(result.rows)
+     })
+     .catch(err => {
+         console.log('Error fetching restaurants', err)
+         res.sendStatus(500)
+     })
+ }) 
 
 module.exports = router;

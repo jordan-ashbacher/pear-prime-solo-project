@@ -1,4 +1,5 @@
 Card.card {
     height: 300px;
     width: 70%;
+    border: 3px solid pink;
 }
