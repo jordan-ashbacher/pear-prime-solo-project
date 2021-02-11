@@ -18,7 +18,6 @@ const useStyles = makeStyles({
 })
 
 const Home = () => {
-  useEffect(() => dispatch({ type: 'FETCH_RESTAURANTS'}), [])
 
   const history = useHistory()
   const dispatch = useDispatch()

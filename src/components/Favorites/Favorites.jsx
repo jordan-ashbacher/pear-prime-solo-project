@@ -1,9 +1,14 @@
 import './Favorites.css'
+import FavoriteList from '../FavoriteList/FavoriteList'
+import { useEffect } from 'react'
+import { useDispatch } from 'react-redux'
 
 const Favorites = () => {
+    const dispatch = useDispatch()
+    useEffect(() => dispatch({ type: 'FETCH_RESTAURANTS'}), [])
 
     return (
-        <h1>Favorites Page</h1>
+        <FavoriteList />
     )
 }
 
