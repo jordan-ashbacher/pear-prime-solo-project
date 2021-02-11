@@ -43,11 +43,24 @@ router.get('/image/:image', (req, res) => {
 
 })
 
-/**
- * POST route template
- */
-router.post('/', (req, res) => {
-  // POST route code here
-});
+router.get('/user/:query', rejectUnauthenticated, (req, res) => {
+  console.log('in user search')
+  const searchText = `%${req.params.query}%`
+  console.log(searchText)
+  const query = `SELECT id, first_name, last_name, username, current_location FROM "user"
+  WHERE (first_name ILIKE $1 OR last_name ILIKE $1 OR username ILIKE $1) AND id NOT IN ($2)`
+
+  pool
+  .query(query, [searchText, req.user.id])
+  .then(results => {
+    console.log(results.rows)
+    res.send(results.rows)
+  })
+  .catch(err => {
+    console.log(err)
+    res.sendStatus(500)
+  })
+
+})
 
 module.exports = router;

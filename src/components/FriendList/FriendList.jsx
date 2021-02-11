@@ -1,17 +1,16 @@
 import './FriendList.css'
+import { useSelector } from 'react-redux'
 
 const FriendList = () => {
 
-    // const favorites = useSelector((store) => store.restaurant)
-    // console.log(favorites)
-
   return (
+      <h1>FriendList</h1>
   
-      <div className="favoriteContainer">
-        {users.map((user, i) => {
-          return <FriendItem key={user.id} user={user} />
-        })}
-      </div>
+    //   <div className="favoriteContainer">
+    //     {users.map((user, i) => {
+    //       return <FriendItem key={user.id} user={user} />
+    //     })}
+    //   </div>
   )
 }
 
