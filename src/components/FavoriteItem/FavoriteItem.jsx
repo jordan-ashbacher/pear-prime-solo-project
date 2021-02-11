@@ -23,6 +23,10 @@ const FavoriteItem = ({ favorite }) => {
     const dispatch = useDispatch()
     const classes = useStyles()
 
+    const removeFavorite = () => {
+        dispatch({ type: 'REMOVE_FAVORITE', payload: favorite.id})
+    }
+
     return (
         <Container className={classes.container} maxWidth="sm">
       <Card className="card">
@@ -39,7 +43,7 @@ const FavoriteItem = ({ favorite }) => {
           </CardContent>
         </CardActionArea>
         <CardActions>
-          <Button variant="contained">
+          <Button variant="contained" onClick={removeFavorite}>
             Remove
           </Button>
         </CardActions>

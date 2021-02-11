@@ -11,14 +11,24 @@ const {
 router.post('/:id', rejectUnauthenticated, (req, res) => {
     // GET route code here
 
-    const databaseQuery = `SELECT "id" from restaurant
-    WHERE "place_id" LIKE '${req.params.id}';`
+    const favoriteQuery = `SELECT user_id, restaurant_id from favorite
+    JOIN restaurant ON favorite.restaurant_id = restaurant.id
+    WHERE restaurant.place_id LIKE '$1' AND favorite.user_id = $2`
 
     pool
-    .query(databaseQuery)
+    .query(favoriteQuery, [req.params.id, req.user.id])
+    .then(result => {
+        if(result.rows[0].id > 0) {
+            res.sendStatus(200)
+        } else {
+            const databaseQuery = `SELECT "id" from restaurant
+    WHERE "place_id" LIKE '$1';`
+
+    pool
+    .query(databaseQuery, [req.params.id])
     .then(results => {
         console.log(results.rows)
-        if (results.rows.place_id === req.params.id) {
+        if (results.rows[0].id > 0) {
             const restaurantID = results.rows[0].id
           
                   const favoriteQuery = `INSERT INTO favorite (user_id, restaurant_id)
@@ -89,6 +99,13 @@ router.post('/:id', rejectUnauthenticated, (req, res) => {
             }) 
         }
     }) 
+        }
+    })
+    .catch(err => {
+        console.log(err)
+    })
+
+    
   
   });
 
@@ -108,5 +125,19 @@ router.post('/:id', rejectUnauthenticated, (req, res) => {
          res.sendStatus(500)
      })
  }) 
+
+ router.delete('/delete/:id', rejectUnauthenticated, (req, res) => {
+     const query = `DELETE FROM favorite WHERE user_id = $1 AND restaurant_id = $2`
+
+     pool
+     .query(query, [req.user.id, req.params.id])
+     .then(result => {
+         res.sendStatus(200)
+     })
+     .catch(err => {
+         console.log(err)
+         res.sendStatus(500)
+     })
+ })
 
 module.exports = router;

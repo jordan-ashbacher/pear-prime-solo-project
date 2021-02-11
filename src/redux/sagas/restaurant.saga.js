@@ -22,9 +22,20 @@ function* addRestaurant(action) {
     
 }
 
+function* removeFavorite(action) {
+    try{
+        const id = action.payload
+        yield axios.delete(`/api/restaurant/delete/${id}`)
+        yield put({ type: 'FETCH_RESTAURANTS'})
+    } catch(err) {
+        console.log(err)
+    }
+}
+
 function* restaurantSaga() {
     yield takeEvery('FETCH_RESTAURANTS', fetchRestaurants)
     yield takeEvery('ADD_RESTAURANT', addRestaurant)
+    yield takeEvery('REMOVE_FAVORITE', removeFavorite)
 }
 
 export default restaurantSaga
