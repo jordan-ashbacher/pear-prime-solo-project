@@ -17,8 +17,23 @@ router.post('/:id', rejectUnauthenticated, (req, res) => {
     pool
     .query(databaseQuery)
     .then(results => {
-        if (results.rows === []) {
-            const id = req.params.id
+        console.log(results.rows)
+        if (results.rows.place_id === req.params.id) {
+            const restaurantID = results.rows[0].id
+          
+                  const favoriteQuery = `INSERT INTO favorite (user_id, restaurant_id)
+                          VALUES ($1, $2)`
+          
+                  pool
+                  .query(favoriteQuery, [req.user.id, restaurantID])
+                  .then(result => {
+                      res.sendStatus(201)
+                  }).catch(err => {
+                      console.log(err)
+                      res.sendStatus(500)
+                  })
+        } else {
+                  const id = req.params.id
             axios
             .get(`https://maps.googleapis.com/maps/api/place/details/json?place_id=${id}&key=${process.env.GOOGLE_API_KEY}`)
             .then(results => {
@@ -72,27 +87,13 @@ router.post('/:id', rejectUnauthenticated, (req, res) => {
             .catch(err => {
                 console.log(err)
             }) 
-        } else {
-            const restaurantID = results.rows[0].id
-          
-                  const favoriteQuery = `INSERT INTO favorite (user_id, restaurant_id)
-                          VALUES ($1, $2)`
-          
-                  pool
-                  .query(favoriteQuery, [req.user.id, restaurantID])
-                  .then(result => {
-                      res.sendStatus(201)
-                  }).catch(err => {
-                      console.log(err)
-                      res.sendStatus(500)
-                  })
         }
     }) 
   
   });
 
  router.get('/', rejectUnauthenticated, (req, res) => {
-     const query = `SELECT * FROM restaurant
+     const query = `SELECT restaurant.address, restaurant.city, restaurant.name, restaurant.phone, restaurant.photo1, restaurant.photo2, restaurant.photo3, restaurant.photo4, restaurant.photo5, restaurant.place_id, restaurant.rating, restaurant.id, restaurant.website FROM restaurant
      JOIN favorite ON restaurant.id = favorite.restaurant_id
      JOIN "user" on "user".id = favorite.user_id
      WHERE "user".id = $1 AND "user".current_location = restaurant.city`

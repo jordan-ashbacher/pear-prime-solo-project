@@ -21,7 +21,8 @@ router.get('/:q', rejectUnauthenticated, (req, res) => {
       const results = response.data.results.map((place) => ({
           place_id: place.place_id,
           name: place.name,
-          image: place.photos[0].photo_reference
+          image: place.photos[0].photo_reference,
+          address: place.vicinity
       }))
       res.send(results)
   })
@@ -33,7 +34,7 @@ router.get('/:q', rejectUnauthenticated, (req, res) => {
 
 router.get('/image/:image', (req, res) => {
     const image = req.params.image
-    console.log(image)
+    // console.log(image)
     //Google Place Photo API request with photo_reference key from RestaurantItem
     const imageSearchURL = `https://maps.googleapis.com/maps/api/place/photo?maxwidth=600&photoreference=${image}&key=${process.env.GOOGLE_API_KEY}`
 

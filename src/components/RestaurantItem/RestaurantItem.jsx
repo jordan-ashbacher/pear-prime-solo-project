@@ -47,6 +47,9 @@ const RestaurantItem = ({ restaurant }) => {
             <Typography gutterBottom variant="h5" component="h2">
               {restaurant.name}
             </Typography>
+            <Typography variant="body2" component="p">
+              {restaurant.address}
+            </Typography>
           </CardContent>
         </CardActionArea>
         <CardActions>

@@ -15,6 +15,7 @@ function* addRestaurant(action) {
     try {
         const restaurant = action.payload
         yield axios.post(`/api/restaurant/${restaurant.place_id}`)
+        yield put({ type: 'FETCH_RESTAURANTS'})
     } catch(err) {
         console.log('Error in addRestaurant saga', err)
     }

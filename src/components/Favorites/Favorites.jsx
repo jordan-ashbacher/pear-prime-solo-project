@@ -8,7 +8,11 @@ const Favorites = () => {
     useEffect(() => dispatch({ type: 'FETCH_RESTAURANTS'}), [])
 
     return (
-        <FavoriteList />
+        <div className="favoritesContainer">
+            <h1>Favorites</h1>
+            <FavoriteList />
+        </div>
+        
     )
 }
 

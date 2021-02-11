@@ -8,7 +8,6 @@ const FavoriteList = () => {
 
   return (
     <>
-      <h1>Favorite Restaurants</h1>
       <div className="favoriteContainer">
         {favorites.map((favorite, i) => {
           return <FavoriteItem key={favorite.id} favorite={favorite} />
