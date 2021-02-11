@@ -7,13 +7,13 @@ const FavoriteList = () => {
   console.log(favorites)
 
   return (
-    <>
+  
       <div className="favoriteContainer">
         {favorites.map((favorite, i) => {
           return <FavoriteItem key={favorite.id} favorite={favorite} />
         })}
       </div>
-    </>
+    
   )
 }
 

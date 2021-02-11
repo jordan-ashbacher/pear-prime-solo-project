@@ -27,6 +27,8 @@ const Home = () => {
   const [locationToggle, setLocationToggle] = useState(false)
   const user = useSelector((store) => store.user)
 
+  
+
   const updateLocation = (e) => {
     e.preventDefault()
     dispatch({ type: "UPDATE_LOCATION", payload: location })
