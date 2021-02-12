@@ -46,7 +46,6 @@ router.get('/image/:image', (req, res) => {
 router.get('/user/:query', rejectUnauthenticated, (req, res) => {
   console.log('in user search')
   const searchText = `%${req.params.query}%`
-  console.log(searchText)
   const query = `SELECT id, first_name, last_name, username, current_location FROM "user"
   WHERE (first_name ILIKE $1 OR last_name ILIKE $1 OR username ILIKE $1) AND id NOT IN ($2)`
 

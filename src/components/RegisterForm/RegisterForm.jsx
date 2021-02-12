@@ -7,7 +7,7 @@ function RegisterForm() {
     lastName: '',
     username: '',
     password: '',
-    city: ''
+    current_location: ''
   });
   const errors = useSelector((store) => store.errors);
   const dispatch = useDispatch();
@@ -84,12 +84,12 @@ function RegisterForm() {
         </label>
       </div>
       <div>
-        <label htmlFor="city">
+        <label htmlFor="current_location">
           City:
           <input
             type="text"
-            name="city"
-            value={newUser.city}
+            name="current_location"
+            value={newUser.current_location}
             required
             onChange={handleChange}
           />

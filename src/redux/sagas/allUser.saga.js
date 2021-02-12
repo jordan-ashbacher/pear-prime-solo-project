@@ -5,6 +5,7 @@ import { put, takeEvery } from 'redux-saga/effects';
     try {
       const searchQuery = action.payload
       const response = yield axios.get(`/api/search/user/${searchQuery}`)
+      yield put({ type: 'SET_USER_SEARCH', payload: response.data})
     }catch (err) {
       console.log(err)
     }

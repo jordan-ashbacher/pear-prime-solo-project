@@ -14,6 +14,7 @@ function* fetchRestaurants() {
 function* addRestaurant(action) {
     try {
         const restaurant = action.payload
+        console.log('ADD RESTAURANT SAGA:', restaurant)
         yield axios.post(`/api/restaurant/${restaurant.place_id}`)
         yield put({ type: 'FETCH_RESTAURANTS'})
     } catch(err) {

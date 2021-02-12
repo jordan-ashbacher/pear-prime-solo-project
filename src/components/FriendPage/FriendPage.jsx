@@ -10,15 +10,13 @@ const FriendPage = () => {
     const dispatch = useDispatch()
     const history = useHistory()
 
-    const users = useSelector((store) => store.allUsers)
+    
     const [userQuery, setUserQuery] = useState('')
     
     const searchUsers = (e) => {
        dispatch({ type: 'SEARCH_USERS', payload: userQuery})
        setUserQuery('')
     }
-
-    console.log(users)
 
 
     

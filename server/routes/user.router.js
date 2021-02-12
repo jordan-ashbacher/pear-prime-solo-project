@@ -23,10 +23,10 @@ router.post('/register', (req, res, next) => {
   const lastName = req.body.lastName
   const username = req.body.username;
   const password = encryptLib.encryptPassword(req.body.password);
-  const current_location = req.body.city
+  const current_location = req.body.current_location
 
   axios
-  .get(`https://maps.googleapis.com/maps/api/place/textsearch/json?query=${city}&key=${process.env.GOOGLE_API_KEY}`)
+  .get(`https://maps.googleapis.com/maps/api/place/textsearch/json?query=${current_location}&key=${process.env.GOOGLE_API_KEY}`)
   .then(results => {
     const lat = results.data.results[0].geometry.location.lat
     const lng = results.data.results[0].geometry.location.lng
