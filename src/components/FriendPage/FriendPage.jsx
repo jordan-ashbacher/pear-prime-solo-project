@@ -10,6 +10,8 @@ const FriendPage = () => {
     const dispatch = useDispatch()
     const history = useHistory()
 
+    useEffect(() => dispatch({ type: 'FETCH_USERS' }), [])
+
     
     const [userQuery, setUserQuery] = useState('')
     
