@@ -5,7 +5,7 @@ import userSaga from './user.saga';
 import searchSaga from './search.saga'
 import restaurantSaga from './restaurant.saga'
 import locationSaga from './location.saga'
-import allUserSaga from './allUser.saga'
+import friendSaga from './friend.saga'
 
 // rootSaga is the primary saga.
 // It bundles up all of the other sagas so our project can use them.
@@ -22,6 +22,6 @@ export default function* rootSaga() {
     searchSaga(),
     restaurantSaga(),
     locationSaga(),
-    allUserSaga(),
+    friendSaga(),
   ]);
 }

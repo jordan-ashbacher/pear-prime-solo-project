@@ -1,9 +1,12 @@
 import './Pear.css'
+import '../PearFriendList/PearFriendList'
+import PearFriendList from '../PearFriendList/PearFriendList'
 
 const Pear = () => {
 
     return (
-        <h1>Pear Page</h1>
+        <PearFriendList />
+
     )
 }
 

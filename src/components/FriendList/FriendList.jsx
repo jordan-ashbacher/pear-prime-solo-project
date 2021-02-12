@@ -19,12 +19,12 @@ const useStyles = makeStyles((theme) => ({
 const FriendList = () => {
 
   const classes = useStyles();
-    const users = useSelector((store) => store.allUsers)
+  const users = useSelector((store) => store.friends)
 
   return (
   
       <List className={classes.root}>
-        {users.map((user) => {
+        {users.friendSearchReducer.map((user) => {
           return <FriendItem key={user.id} user={user} />
         })}
       </List>

@@ -13,7 +13,7 @@ import { put, takeEvery } from 'redux-saga/effects';
 
   function* fetchUsers() {
     try {
-      const response = yield axios.get('/api/friends')
+      const response = yield axios.get('/api/friends/all')
     yield put({ type: 'SET_ALL_USERS', payload: response.data})
     } catch(err) {
       console.log(err)
@@ -28,13 +28,23 @@ import { put, takeEvery } from 'redux-saga/effects';
       console.log(err)
     }
   }
+
+  function* fetchFriends() {
+    try {
+      const response = yield axios.get(`/api/friends`)
+      yield put({ type: 'SET_FRIENDS', payload: response.data})
+    } catch(err) {
+      console.log(err)
+    }
+  }
     
 
-function* allUserSaga() {
+function* friendsSaga() {
   yield takeEvery('FETCH_USERS', fetchUsers)
     yield takeEvery('SEARCH_USERS', searchUsers)
     yield takeEvery('ADD_FRIEND', addFriend)
+    yield takeEvery('FETCH_FRIENDS', fetchFriends)
 }
 
-export default allUserSaga
+export default friendsSaga
   
