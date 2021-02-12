@@ -24,6 +24,8 @@ import Search from '../Search/Search'
 import Favorites from '../Favorites/Favorites'
 import Pear from '../Pear/Pear'
 import FriendPage from '../FriendPage/FriendPage'
+import NavDrawer from '../NavDrawer/NavDrawer'
+
 
 import './App.css';
 
@@ -152,7 +154,7 @@ function App() {
             <h1>404</h1>
           </Route>
         </Switch>
-        <Nav />
+        <NavDrawer />
       </div>
     </Router>
   );
