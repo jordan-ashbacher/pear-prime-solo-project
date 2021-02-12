@@ -1,7 +1,9 @@
 import './PearFriendList.css'
+import PearFriendItem from '../PearFriendItem/PearFriendItem'
 import { useEffect} from 'react'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { makeStyles } from '@material-ui/core/styles'
+import List from '@material-ui/core/List'
 
 
 const useStyles = makeStyles((theme) => ({
@@ -16,16 +18,21 @@ const PearFriendList = () => {
     const dispatch = useDispatch()
     useEffect(() => dispatch({ type: 'FETCH_FRIENDS'}), [])
 
+    const friends = useSelector(store => store.friends)
+
+
     const classes = useStyles();
     // const users = useSelector((store) => store.friendSearch)
 
     return (
-      <h1>PEAR FRIEND LIST</h1>
-      //   <List className={classes.root}>
-      //       {users.map((user) => {
-      //       return <FriendItem key={user.id} user={user} />
-      //       })}
-      // </List>
+      <>
+        <h1>Select a Friend to Pear With: </h1>
+        <List className={classes.root}>
+            {friends.friendReducer.map((friend) => {
+            return <PearFriendItem key={friend.id} friend={friend} />
+            })}
+      </List>
+      </>
     )
 }
 
