@@ -59,31 +59,31 @@ const NavDrawer = () => {
             <Button onClick={toggleDrawer(true)}><MenuIcon className={classes.navIcon} /></Button>
             <Drawer className={classes.fullList} anchor="bottom" open={state} onClose={toggleDrawer({bottom: false})} onClick={toggleDrawer({bottom: false})} onKeyDown={toggleDrawer({bottom: false})}>
                 <List>
-                    <ListItem button>
-                        <Link to={loginLinkData.path}>
+                    <Link to={loginLinkData.path}>
+                        <ListItem button>
                             <ListItemText primary={loginLinkData.text} />
-                        </Link>
-                    </ListItem>
-                    <ListItem>
-                        <Link to="/search">
+                        </ListItem>
+                    </Link>
+                    <Link to="/search">
+                        <ListItem>
                             <ListItemText primary="Search" />
-                        </Link>
-                    </ListItem>
-                    <ListItem button>
-                        <Link to="/favorites">
+                        </ListItem>
+                    </Link>
+                    <Link to="/favorites">
+                        <ListItem button>
                             <ListItemText primary="Favorites" />
-                        </Link>
-                    </ListItem>
-                    <ListItem button>
-                        <Link to="/friends">
+                        </ListItem>
+                    </Link>
+                    <Link to="/friends">
+                        <ListItem button>
                             <ListItemText primary="Friends" />
-                        </Link>
-                    </ListItem>
-                    <ListItem button>
-                        <Link to="/pear">
+                        </ListItem>
+                    </Link>
+                    <Link to="/pear">
+                        <ListItem button>
                             <ListItemText primary="Pear" />
-                        </Link>
-                    </ListItem>
+                        </ListItem>
+                    </Link>
                     <ListItem button onClick={logOut}>
                         <ListItemText primary="Log Out"  />
                     </ListItem>
