@@ -17,6 +17,9 @@ import Drawer from '@material-ui/core/Drawer'
 const useStyles = makeStyles({
     fullList: {
         width: 'auto'
+    },
+    navIcon: {
+        color: 'white'
     }
 })
 
@@ -52,8 +55,8 @@ const NavDrawer = () => {
     }
 
     return (
-        <div>
-            <Button onClick={toggleDrawer(true)}><MenuIcon /></Button>
+        <div className="navContainer">
+            <Button onClick={toggleDrawer(true)}><MenuIcon className={classes.navIcon} /></Button>
             <Drawer className={classes.fullList} anchor="bottom" open={state} onClose={toggleDrawer({bottom: false})} onClick={toggleDrawer({bottom: false})} onKeyDown={toggleDrawer({bottom: false})}>
                 <List>
                     <ListItem button>

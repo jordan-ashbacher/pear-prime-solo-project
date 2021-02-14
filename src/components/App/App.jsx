@@ -26,8 +26,27 @@ import Pear from '../Pear/Pear'
 import FriendPage from '../FriendPage/FriendPage'
 import NavDrawer from '../NavDrawer/NavDrawer'
 
+import { ThemeProvider, createMuiTheme } from "@material-ui/core/styles"
 
 import './App.css';
+
+const theme = createMuiTheme({
+  palette: {
+    primary: {
+      main: "#677F6A"
+    },
+    secondary: {
+      main: "#898A34"
+    }
+  },
+  typography: {
+    fontFamily: "'Nunito Sans', sans-serif",
+    h1: {
+      fontFamily: "'Brightfate', sans-serif",
+    }
+  },
+  
+})
 
 function App() {
   const dispatch = useDispatch();
@@ -37,9 +56,10 @@ function App() {
   }, [dispatch]);
 
   return (
+    <ThemeProvider theme={theme}>
     <Router>
       <div>
-        
+      <NavDrawer />
         <Switch>
           {/* Visiting localhost:3000 will redirect to localhost:3000/home */}
           <Redirect exact from="/" to="/home" />
@@ -154,9 +174,10 @@ function App() {
             <h1>404</h1>
           </Route>
         </Switch>
-        <NavDrawer />
+        
       </div>
     </Router>
+    </ThemeProvider>
   );
 }
 

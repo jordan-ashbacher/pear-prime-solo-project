@@ -4,16 +4,19 @@ import { useState, useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { makeStyles } from "@material-ui/core/styles"
 import Button from "@material-ui/core/Button"
+import Typography from "@material-ui/core/Typography"
 
 const useStyles = makeStyles({
   button: {
     height: "80px",
-    width: "70%",
-    background: "#00acb0",
+    width: "100%",
     color: "white",
+    letterSpacing: '.1rem'
   },
   updateButton: {
     fontSize: "10px",
+    marginTop: "5px",
+    marginBottom: "10px"
   },
 })
 
@@ -49,8 +52,10 @@ const Home = () => {
   }
 
   return (
-    <div className="container">
+    <div className="homeContainer">
       <h1 className="appTitle">PEAR</h1>
+      <h2 className="subhead">Match Your Tastes</h2>
+      <div className="mainContainer">
       {locationToggle ? (
         <div className="formContainer">
           <form onSubmit={updateLocation}>
@@ -60,45 +65,56 @@ const Home = () => {
               value={location}
               onChange={(e) => setLocation(e.target.value)}
             />
-            <Button className="submitButton" type="submit">Set Location</Button>
+            <Button 
+              className="submitButton" 
+              type="submit" 
+              variant="outlined"
+              color="primary"
+            >
+              Set Location
+            </Button>
           </form>
         </div>
       ) : (
-        <>
+        <div className="locationContainer">
+          <p className="locationLabel">Pairing restaurants in</p>
           <h2 className="cityTitle">{user.current_location}</h2>
           <Button
             onClick={() => setLocationToggle(!locationToggle)}
             className={classes.updateButton}
+            variant="outlined"
+            color="primary"
           >
             Update Location
           </Button>
-        </>
+        </div>
       )}
       <div className="buttonContainer">
-        <h2>1</h2>
         <Button
           variant="contained"
+          color="primary"
           className={classes.button}
           onClick={pushToSearch}
         >
           Add Your Favorite Restaurants
         </Button>
-        <h2>2</h2>
         <Button
           variant="contained"
+          color="primary"
           className={classes.button}
           onClick={pushToFriends}
         >
           Add Your Friends
         </Button>
-        <h2>3</h2>
         <Button
           variant="contained"
+          color="primary"
           className={classes.button}
           onClick={pushToPear}
         >
-          PEAR
+          Start Pairing
         </Button>
+        </div>
       </div>
     </div>
   )
