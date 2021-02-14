@@ -33,10 +33,22 @@ function* removeFavorite(action) {
     }
 }
 
+function* updateNote(action) {
+    try {
+        console.log(action.payload)
+        const newNote = action.payload
+        yield axios.put(`/api/restaurant/note`, newNote)
+        yield put({ type: 'FETCH_RESTAURANTS' })
+    } catch(err) {
+        console.log(err)
+    }
+}
+
 function* restaurantSaga() {
     yield takeEvery('FETCH_RESTAURANTS', fetchRestaurants)
     yield takeEvery('ADD_RESTAURANT', addRestaurant)
     yield takeEvery('REMOVE_FAVORITE', removeFavorite)
+    yield takeEvery('EDIT_NOTE', updateNote)
 }
 
 export default restaurantSaga

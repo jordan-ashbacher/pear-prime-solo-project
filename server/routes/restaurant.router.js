@@ -113,7 +113,7 @@ router.post('/:id', rejectUnauthenticated, (req, res) => {
   });
 
  router.get('/', rejectUnauthenticated, (req, res) => {
-     const query = `SELECT restaurant.address, restaurant.city, restaurant.name, restaurant.phone, restaurant.photo1, restaurant.photo2, restaurant.photo3, restaurant.photo4, restaurant.photo5, restaurant.place_id, restaurant.rating, restaurant.id, restaurant.website FROM restaurant
+     const query = `SELECT restaurant.address, restaurant.city, restaurant.name, restaurant.phone, restaurant.photo1, restaurant.photo2, restaurant.photo3, restaurant.photo4, restaurant.photo5, restaurant.place_id, restaurant.rating, restaurant.id, restaurant.website, favorite.notes, favorite.id AS "favorite_id" FROM restaurant
      JOIN favorite ON restaurant.id = favorite.restaurant_id
      JOIN "user" on "user".id = favorite.user_id
      WHERE "user".id = $1 AND "user".current_location = restaurant.city`
@@ -141,6 +141,24 @@ router.post('/:id', rejectUnauthenticated, (req, res) => {
          console.log(err)
          res.sendStatus(500)
      })
+ })
+
+ router.put('/note', rejectUnauthenticated, (req, res) => {
+    console.log(req.body)
+    const note = req.body.note
+    const id = req.body.id 
+    const query = `UPDATE favorite
+                    SET notes = $1
+                    WHERE id = $2`
+
+    pool
+    .query(query, [note, id])
+    .then(results => {
+        res.sendStatus(200)
+    })
+    .catch(err => {
+        console.log(err)
+    })
  })
 
 module.exports = router;
