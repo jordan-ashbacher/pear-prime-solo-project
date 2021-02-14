@@ -7,12 +7,13 @@ const {
     rejectUnauthenticated,
   } = require("../modules/authentication-middleware.js");
 
-
+//Post to add restaurant to database and new favorite entry for current user
 router.post('/:id', rejectUnauthenticated, (req, res) => {
     // GET route code here
     console.log('IN ADD NEW RESTAURANT ROUTER')
     console.log(req.params.id)
 
+    //Query to see if restaurant is already a favorite of current user
     const favoriteQuery = `SELECT user_id, restaurant_id from favorite
     JOIN restaurant ON favorite.restaurant_id = restaurant.id
     WHERE restaurant.place_id LIKE $1 AND favorite.user_id = $2`
@@ -20,17 +21,18 @@ router.post('/:id', rejectUnauthenticated, (req, res) => {
     pool
     .query(favoriteQuery, [req.params.id, req.user.id])
     .then(result => {
-        console.log(result.rows)
+        //If user has already added as a favorite, exit post
         if(result.rows.length > 0) {
             res.sendStatus(200)
         } else {
+            //Query to see if restaurant is already in database
             const databaseQuery = `SELECT id from restaurant
             WHERE "place_id" LIKE $1;`
 
             pool
             .query(databaseQuery, [req.params.id])
             .then(results => {
-                console.log(results.rows)
+                //If restaurant is already in database, only add to user's favorites
                 if (results.rows.length > 0) {
                     const restaurantID = results.rows[0].id
                 
@@ -46,6 +48,7 @@ router.post('/:id', rejectUnauthenticated, (req, res) => {
                             res.sendStatus(500)
                         })
                 } else {
+                    //If restaurant isn't in database. Get place details from Google and add restaurant to database with new favorite for current user
                     const id = req.params.id
                     axios
                     .get(`https://maps.googleapis.com/maps/api/place/details/json?place_id=${id}&key=${process.env.GOOGLE_API_KEY}`)
@@ -112,6 +115,7 @@ router.post('/:id', rejectUnauthenticated, (req, res) => {
   
   });
 
+  //Get favorite restaurant details for users current location
  router.get('/', rejectUnauthenticated, (req, res) => {
      const query = `SELECT restaurant.address, restaurant.city, restaurant.name, restaurant.phone, restaurant.photo1, restaurant.photo2, restaurant.photo3, restaurant.photo4, restaurant.photo5, restaurant.place_id, restaurant.rating, restaurant.id, restaurant.website, favorite.notes, favorite.id AS "favorite_id" FROM restaurant
      JOIN favorite ON restaurant.id = favorite.restaurant_id
@@ -130,10 +134,10 @@ router.post('/:id', rejectUnauthenticated, (req, res) => {
  }) 
 
  router.delete('/delete/:id', rejectUnauthenticated, (req, res) => {
-     const query = `DELETE FROM favorite WHERE user_id = $1 AND restaurant_id = $2`
+     const query = `DELETE FROM favorite WHERE id = $1`
 
      pool
-     .query(query, [req.user.id, req.params.id])
+     .query(query, [req.params.id])
      .then(result => {
          res.sendStatus(200)
      })

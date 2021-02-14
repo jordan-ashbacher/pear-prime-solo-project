@@ -1,6 +1,7 @@
 import axios from 'axios'
 import { put, takeEvery } from 'redux-saga/effects'
 
+// Fetches and sets favorite restaurant reducer for current user
 function* fetchRestaurants() {
     try {
         const response = yield axios.get(`/api/restaurant`)
@@ -11,6 +12,7 @@ function* fetchRestaurants() {
     }
 }
 
+//Post for new favorite restaurant and dispatch to fetch updated favorites list
 function* addRestaurant(action) {
     try {
         const restaurant = action.payload
@@ -23,6 +25,7 @@ function* addRestaurant(action) {
     
 }
 
+//Route to remove restaurant from current users favorites
 function* removeFavorite(action) {
     try{
         const id = action.payload

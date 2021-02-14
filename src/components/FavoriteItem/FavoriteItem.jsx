@@ -18,6 +18,7 @@ import DialogTitle from '@material-ui/core/DialogTitle';
 import EditIcon from '@material-ui/icons/Create'
 import SaveIcon from '@material-ui/icons/Save'
 
+// sets Material-UI styles
 const useStyles = makeStyles({
     media: {
       width: "100%",
@@ -32,14 +33,17 @@ const FavoriteItem = ({ favorite }) => {
     const dispatch = useDispatch()
     const classes = useStyles()
 
+    //State variable for notes dialog box, text area and note content
     const [open, setOpen] = useState(false)
     const [edit, setEdit] = useState(false)
     const [noteText, setNoteText] = useState(favorite.notes)
 
+    //Sets state for notes dialog box
     const handleOpen = () => {
       setOpen(true)
     }
-
+    
+    //Sets state for notes dialog box and edit page when dialog box is closed
     const handleClose = () => {
       setOpen(false)
       setEdit(false)
@@ -49,6 +53,7 @@ const FavoriteItem = ({ favorite }) => {
       setEdit(!edit)
     }
 
+    //Dispatches new note content with id from favorite table
     const saveNote = () => {
       const newNote = {
         id: favorite.favorite_id,
@@ -59,8 +64,9 @@ const FavoriteItem = ({ favorite }) => {
       setEdit(!edit)
     }
 
+    // Dispatch to remove restaurant from favorite table
     const removeFavorite = () => {
-        dispatch({ type: 'REMOVE_FAVORITE', payload: favorite.id})
+        dispatch({ type: 'REMOVE_FAVORITE', payload: favorite.favorite_id})
     }
 
     return (
