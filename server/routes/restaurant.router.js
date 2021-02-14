@@ -53,9 +53,11 @@ router.post('/:id', rejectUnauthenticated, (req, res) => {
                     axios
                     .get(`https://maps.googleapis.com/maps/api/place/details/json?place_id=${id}&key=${process.env.GOOGLE_API_KEY}`)
                     .then(results => {
+                        const address = results.data.result.formatted_address
+                        const formattedAddress = address.slice(0, -5)
                         const restaurant = {
-                            city: results.data.result.address_components[3].long_name,
-                            address: results.data.result.formatted_address,
+                            city: req.user.current_location,
+                            address: formattedAddress,
                             phone: results.data.result.formatted_phone_number,
                             name: results.data.result.name,
                             photo1: results.data.result.photos[0].photo_reference,

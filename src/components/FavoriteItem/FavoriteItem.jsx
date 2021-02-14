@@ -6,6 +6,7 @@ import Card from "@material-ui/core/Card"
 import CardActionArea from "@material-ui/core/CardActionArea"
 import CardActions from "@material-ui/core/CardActions"
 import CardContent from "@material-ui/core/CardContent"
+import CardMedia from '@material-ui/core/CardMedia'
 import Button from "@material-ui/core/Button"
 import Typography from "@material-ui/core/Typography"
 import Container from "@material-ui/core/Container"
@@ -17,16 +18,29 @@ import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import EditIcon from '@material-ui/icons/Create'
 import SaveIcon from '@material-ui/icons/Save'
+import { PlayCircleFilledWhite } from '@material-ui/icons'
 
 // sets Material-UI styles
 const useStyles = makeStyles({
     media: {
       width: "100%",
-      maxHeight: "300px",
+      maxHeight: "100%",
     },
     container: {
         marginBottom: "10px",
     },
+    card: {
+      width: "400px",
+      height: "600px"
+    },
+    content: {
+      background: "#677F6A",
+      color: "white"
+    },
+    actions: {
+      background: "#677F6A",
+      color: "white"
+    }
   })
 
 const FavoriteItem = ({ favorite }) => {
@@ -70,27 +84,30 @@ const FavoriteItem = ({ favorite }) => {
     }
 
     return (
-        <Container className={classes.container} maxWidth="sm">
+      <Container className={classes.container} maxWidth="sm">
       <Card className="card">
         <CardActionArea>
-          <img
+          <CardMedia
+            component="img"
             src={`/api/search/image/${favorite.photo2}`}
             alt=""
             className={classes.media}
           />
-          <CardContent>
+          <CardContent className={classes.content}>
             <Typography gutterBottom variant="h5" component="h2">
               {favorite.name}
             </Typography>
+            <Typography component="p">
+              {favorite.address}
+            </Typography>
           </CardContent>
         </CardActionArea>
-        <CardActions>
-          <Button variant="outlined" color="primary" onClick={removeFavorite}>
+        <CardActions className={classes.actions}>
+          <Button variant="outlined" onClick={removeFavorite}>
             Remove
           </Button>
           <Button 
             variant="outlined" 
-            color="primary"
             onClick={handleOpen}
           >
             Notes
@@ -98,7 +115,8 @@ const FavoriteItem = ({ favorite }) => {
           <Dialog
             open={open}
             onClose={handleClose}
-            aria-labelledby="form-dialog-title"  
+            aria-labelledby="form-dialog-title"
+            fullWidth={true} 
           >
             <DialogTitle id="form-dialog-title">Notes</DialogTitle>
             {!edit ? (
