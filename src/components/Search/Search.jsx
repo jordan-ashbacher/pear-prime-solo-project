@@ -5,11 +5,13 @@ import { useHistory } from "react-router-dom"
 import RestaurantList from "../RestaurantList/RestaurantList"
 import Button from '@material-ui/core/Button'
 
+
 const Search = () => {
   const dispatch = useDispatch()
   const history = useHistory()
 
   const [newQuery, setNewQuery] = useState("")
+  
 
   const submitSearch = (e) => {
     e.preventDefault()

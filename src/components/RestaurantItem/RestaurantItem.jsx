@@ -1,4 +1,5 @@
 import "./RestaurantItem.css"
+import { useState } from 'react'
 import { useDispatch } from "react-redux"
 import { makeStyles } from "@material-ui/core/styles"
 import Card from "@material-ui/core/Card"
@@ -8,6 +9,7 @@ import CardContent from "@material-ui/core/CardContent"
 import Button from "@material-ui/core/Button"
 import Typography from "@material-ui/core/Typography"
 import Container from "@material-ui/core/Container"
+import Snackbar from '@material-ui/core/Snackbar';
 
 const useStyles = makeStyles({
   media: {
@@ -25,13 +27,18 @@ const RestaurantItem = ({ restaurant }) => {
   const dispatch = useDispatch()
   const classes = useStyles()
 
-  // const user = useSelector(store => store.user)
+  const [openSnack, setOpenSnack] = useState(false)
 
   const addFavorite = () => {
     // console.log(user)
     // console.log(restaurant)
-    dispatch({ type: "ADD_FAVORITE", payload: restaurant })
+    // dispatch({ type: "ADD_FAVORITE", payload: restaurant })
     dispatch({ type: "ADD_RESTAURANT", payload: restaurant })
+    setOpenSnack(true)
+  }
+
+  const handleClose = () => {
+    setOpenSnack(false)
   }
 
   return (
@@ -56,6 +63,18 @@ const RestaurantItem = ({ restaurant }) => {
           <Button variant="contained" onClick={addFavorite}>
             Favorite
           </Button>
+          <Snackbar
+            anchorOrigin={{
+              vertical: 'bottom',
+              horizontal: 'center'
+            }}
+            open={openSnack}
+            onClose={handleClose}
+            autoHideDuration={3000}
+            message="Added to favorites"
+          >
+
+          </Snackbar>
         </CardActions>
       </Card>
     </Container>
