@@ -9,7 +9,8 @@ import List from '@material-ui/core/List'
 const useStyles = makeStyles((theme) => ({
     root: {
       width: '100%',
-      maxWidth: 360,
+      // maxWidth: 360,
+      margin: "0"
     },
   }));
 
