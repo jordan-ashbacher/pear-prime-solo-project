@@ -9,7 +9,7 @@ const Favorites = () => {
 
     return (
         <div className="favoritesContainer">
-            <h1>Favorites</h1>
+            <h1 className="favoritesTitle">Favorites</h1>
             <FavoriteList />
         </div>
         

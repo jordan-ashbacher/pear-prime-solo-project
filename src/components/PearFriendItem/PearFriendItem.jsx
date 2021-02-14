@@ -19,7 +19,7 @@ const PearFriendItem = ({ friend }) => {
       </ListItemIcon>
       <ListItemText primary={fullName} secondary={friend.username} />
       <ListItemSecondaryAction>
-        <Button>Pear</Button>
+        <Button>Pair</Button>
       </ListItemSecondaryAction>
     </ListItem>
   )

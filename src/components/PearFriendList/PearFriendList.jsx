@@ -26,7 +26,7 @@ const PearFriendList = () => {
 
     return (
       <>
-        <h1>Select a Friend to Pear With: </h1>
+        <h1>Match Your Tastes </h1>
         <List className={classes.root}>
             {friends.friendReducer.map((friend) => {
             return <PearFriendItem key={friend.id} friend={friend} />

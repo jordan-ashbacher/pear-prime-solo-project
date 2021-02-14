@@ -34,13 +34,19 @@ const useStyles = makeStyles({
       height: "600px"
     },
     content: {
-      background: "#677F6A",
-      color: "white"
+      background: "#fafafa",
+      color: "#677F6A"
     },
     actions: {
-      background: "#677F6A",
-      color: "white"
-    }
+      background: "#fafafa",
+      color: "#677F6A"
+    },
+    restaurantTitle: {
+      textTransform: 'uppercase',
+      fontSize: '20px',
+      fontWeight: 'bolder',
+      letterSpacing: '.1rem'
+    },
   })
 
 const FavoriteItem = ({ favorite }) => {
@@ -94,7 +100,7 @@ const FavoriteItem = ({ favorite }) => {
             className={classes.media}
           />
           <CardContent className={classes.content}>
-            <Typography gutterBottom variant="h5" component="h2">
+            <Typography gutterBottom className={classes.restaurantTitle} >
               {favorite.name}
             </Typography>
             <Typography component="p">
@@ -103,12 +109,17 @@ const FavoriteItem = ({ favorite }) => {
           </CardContent>
         </CardActionArea>
         <CardActions className={classes.actions}>
-          <Button variant="outlined" onClick={removeFavorite}>
+          <Button 
+            variant="outlined" 
+            color="primary" 
+            onClick={removeFavorite}
+          >
             Remove
           </Button>
           <Button 
             variant="outlined" 
             onClick={handleOpen}
+            color="primary"
           >
             Notes
           </Button>
