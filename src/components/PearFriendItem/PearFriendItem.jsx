@@ -18,17 +18,23 @@ const useStyles = makeStyles({
 const PearFriendItem = ({ friend }) => {
 
   const classes = useStyles()
+  const dispatch = useDispatch()
   
     const fullName = `${friend.first_name} ${friend.last_name}`
+
+    const findMatches = () => {
+      console.log(friend.id)
+      dispatch({ type: 'FIND_MATCHES', payload: friend.id})
+    }
   
     return (
-    <ListItem className={classes.item}>
+    <ListItem key={friend.id} className={classes.item}>
       <ListItemIcon>
         <AccountIcon />
       </ListItemIcon>
       <ListItemText primary={fullName} secondary={friend.username} />
       <ListItemSecondaryAction>
-        <Button>Pair</Button>
+        <Button onClick={findMatches}>Pair</Button>
       </ListItemSecondaryAction>
     </ListItem>
   )

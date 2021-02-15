@@ -57,11 +57,11 @@ router.get('/all', rejectUnauthenticated, (req, res) => {
 
   router.get('/', rejectUnauthenticated, (req, res) => {
       const userID = req.user.id
-      const query = `SELECT user2_id, "user".first_name, "user".last_name, "user".username, "user".current_location FROM friend
+      const query = `SELECT "user".id, "user".first_name, "user".last_name, "user".username, "user".current_location FROM friend
                     JOIN "user" ON "user".id = friend.user2_id
                     WHERE user1_id = $1
                     UNION
-                    SELECT user2_id, "user".first_name, "user".last_name, "user".username, "user".current_location FROM friend
+                    SELECT "user".id, "user".first_name, "user".last_name, "user".username, "user".current_location FROM friend
                     JOIN "user" ON "user".id = friend.user1_id
                     WHERE user2_id = $1;`
 
