@@ -4,7 +4,11 @@ import { useState, useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { makeStyles } from "@material-ui/core/styles"
 import Button from "@material-ui/core/Button"
-import Typography from "@material-ui/core/Typography"
+import InputBase from '@material-ui/core/InputBase'
+import IconButton from '@material-ui/core/IconButton'
+import Divider from '@material-ui/core/Divider'
+import CheckIcon from '@material-ui/icons/Done'
+import ClearIcon from '@material-ui/icons/Clear'
 
 const useStyles = makeStyles({
   button: {
@@ -18,6 +22,21 @@ const useStyles = makeStyles({
     marginTop: "5px",
     marginBottom: "10px"
   },
+  input: {
+    color: "#677F6A",
+    width: "70%",
+    height: "50px",
+    padding: "5px",
+  },
+  iconButton: {
+    height: "50px",
+    padding: "10px",
+    color: "#677F6A",
+  },
+  divider: {
+    height: "20px",
+    background: "#677F6A"
+  }
 })
 
 const Home = () => {
@@ -30,7 +49,10 @@ const Home = () => {
   const [locationToggle, setLocationToggle] = useState(false)
   const user = useSelector((store) => store.user)
 
-  
+  const clearSearch = () => {
+    setLocation("")
+    setLocationToggle(!locationToggle)
+  }
 
   const updateLocation = (e) => {
     e.preventDefault()
@@ -59,20 +81,30 @@ const Home = () => {
       {locationToggle ? (
         <div className="formContainer">
           <form onSubmit={updateLocation}>
-            <input
+            <InputBase
               type="text"
-              className="cityInput"
+              variant="outlined"
+              className={classes.input}
               value={location}
+              placeholder="Current City..."
+              inputProps={{'aria-label': 'Current City...'}}
               onChange={(e) => setLocation(e.target.value)}
             />
-            <Button 
-              className="submitButton" 
+            <IconButton 
+              className={classes.IconButton}
               type="submit" 
-              variant="outlined"
-              color="primary"
+              aria-label="set"
             >
-              Set Location
-            </Button>
+              <CheckIcon />
+            </IconButton>
+            <Divider className={classes.divider} orientation="vertical" />
+            <IconButton
+              aria-label="clear"
+              className={classes.iconButton}
+              onClick={clearSearch}
+            >
+            <ClearIcon />
+          </IconButton>
           </form>
         </div>
       ) : (
