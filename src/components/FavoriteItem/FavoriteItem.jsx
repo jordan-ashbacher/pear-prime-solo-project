@@ -17,6 +17,7 @@ import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import EditIcon from '@material-ui/icons/Create'
 import SaveIcon from '@material-ui/icons/Save'
+import Link from '@material-ui/core/Link'
 
 
 // sets Material-UI styles
@@ -46,6 +47,14 @@ const useStyles = makeStyles({
       fontWeight: 'bolder',
       letterSpacing: '.1rem'
     },
+    rating: {
+      color: '#677f6A',
+      marginTop: '10px',
+    },
+    link: {
+      display: "block",
+      marginTop: "5px"
+    }
   })
 
 const FavoriteItem = ({ favorite }) => {
@@ -55,6 +64,7 @@ const FavoriteItem = ({ favorite }) => {
     //State variable for notes dialog box, text area and note content
     const [open, setOpen] = useState(false)
     const [edit, setEdit] = useState(false)
+    const [rating, setRating] = useState(favorite.rating)
     const [noteText, setNoteText] = useState(favorite.notes)
 
     //Sets state for notes dialog box
@@ -105,6 +115,13 @@ const FavoriteItem = ({ favorite }) => {
             <Typography component="p">
               {favorite.address}
             </Typography>
+            <Link 
+              href={favorite.website} 
+              target="_blank" rel="noopener" 
+              className={classes.link}
+            >
+              {favorite.website}
+            </Link>
           </CardContent>
         </CardActionArea>
         <CardActions className={classes.actions}>

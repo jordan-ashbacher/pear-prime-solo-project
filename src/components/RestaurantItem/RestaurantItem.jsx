@@ -19,6 +19,10 @@ const useStyles = makeStyles({
   container: {
       marginBottom: "10px",
   },
+  content: {
+    background: "#fafafa",
+    color: "#677F6A"
+  },
 })
 
 // creates card for individual restaurant
@@ -50,7 +54,7 @@ const RestaurantItem = ({ restaurant }) => {
             alt=""
             className={classes.media}
           />
-          <CardContent>
+          <CardContent className={classes.content}>
             <Typography gutterBottom variant="h5" component="h2">
               {restaurant.name}
             </Typography>
@@ -60,7 +64,11 @@ const RestaurantItem = ({ restaurant }) => {
           </CardContent>
         </CardActionArea>
         <CardActions>
-          <Button variant="contained" onClick={addFavorite}>
+          <Button 
+            variant="outlined" 
+            onClick={addFavorite}
+            color="primary"
+          >
             Favorite
           </Button>
           <Snackbar
