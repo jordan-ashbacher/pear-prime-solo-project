@@ -1,10 +1,9 @@
 import "./Search.css"
+import RestaurantList from "../RestaurantList/RestaurantList"
 import { useState } from "react"
 import { useDispatch } from "react-redux"
 import { useHistory } from "react-router-dom"
-import RestaurantList from "../RestaurantList/RestaurantList"
 import { makeStyles } from '@material-ui/core/styles'
-import Button from '@material-ui/core/Button'
 import InputBase from '@material-ui/core/InputBase'
 import IconButton from '@material-ui/core/IconButton'
 import Divider from '@material-ui/core/Divider'

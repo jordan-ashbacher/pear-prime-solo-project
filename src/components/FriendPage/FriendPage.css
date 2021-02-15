@@ -1,0 +1,25 @@
+.friendContainer {
+    /* border: 1px solid pink; */
+    height: 100%;
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    width: 100%;
+}
+
+.friendForm {
+    display: flex;
+    flex-flow: row;
+    justify-content: center;
+    height: 50px;
+    /* border: 2px solid white; */
+    width: 300px;
+    margin: 10px;
+}
+
+.friendTitle {
+   color: white;
+   font-family: 'BrightFate', sans-serif;
+   margin-top: 15px;
+   margin-bottom: 0;
+}
