@@ -16,8 +16,9 @@ router.get('/:friendID', rejectUnauthenticated, (req, res) => {
                 GROUP BY restaurant_id
                 HAVING COUNT(*) > 1
             ) B ON A.restaurant_id = B.restaurant_id
-    JOIN restaurant ON restaurant.id = A.restaurant_id	
-    WHERE user_id = $1 OR user_id = $2
+    JOIN restaurant ON restaurant.id = A.restaurant_id
+    JOIN "user" ON "user".id = A.user_id		
+    WHERE user_id = $1 OR user_id = $2 AND "user".current_location = restaurant.city
     GROUP BY A.restaurant_id, restaurant.address, restaurant.city, restaurant.name, restaurant.phone, restaurant.photo1, restaurant.photo2, restaurant.photo3, restaurant.photo4, restaurant.photo5, restaurant.place_id, restaurant.rating, restaurant.id, restaurant.website
     HAVING COUNT(*) > 1;`
 
