@@ -1,0 +1,14 @@
+.matchContainer {
+    padding-bottom: 15px;
+    height: 100%;
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+}
+
+.matchTitle {
+    color: white;
+    font-family: 'Nunito Sans', sans-serif;
+    margin-top: 0;
+    margin-bottom: 15px;
+}

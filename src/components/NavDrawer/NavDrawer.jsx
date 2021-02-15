@@ -81,7 +81,7 @@ const NavDrawer = () => {
                     </Link>
                     <Link to="/pear">
                         <ListItem button>
-                            <ListItemText primary="Pear" />
+                            <ListItemText primary="Start Pairing" />
                         </ListItem>
                     </Link>
                     <ListItem button onClick={logOut}>

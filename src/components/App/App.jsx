@@ -25,6 +25,7 @@ import Favorites from '../Favorites/Favorites'
 import Pear from '../Pear/Pear'
 import FriendPage from '../FriendPage/FriendPage'
 import NavDrawer from '../NavDrawer/NavDrawer'
+import MatchPage from '../MatchPage/MatchPage'
 
 import { ThemeProvider, createMuiTheme } from "@material-ui/core/styles"
 
@@ -133,6 +134,13 @@ function App() {
             path="/friends"
           >
             <FriendPage />
+          </ProtectedRoute>
+          
+          <ProtectedRoute
+            exact  
+            path="/matches"
+          >
+            <MatchPage />
           </ProtectedRoute>
 
           {/* When a value is supplied for the authRedirect prop the user will

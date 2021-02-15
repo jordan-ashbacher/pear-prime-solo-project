@@ -13,6 +13,7 @@ const searchRouter = require('./routes/search.router')
 const restaurantRouter = require('./routes/restaurant.router')
 const locationRouter = require('./routes/location.router')
 const friendRouter = require('./routes/friends.router')
+const pairRouter = require('./routes/pair.router')
 
 
 // Body parser middleware
@@ -32,6 +33,7 @@ app.use('/api/search', searchRouter)
 app.use('/api/restaurant', restaurantRouter)
 app.use('/api/location', locationRouter)
 app.use('/api/friends', friendRouter)
+app.use('/api/pair', pairRouter)
 
 
 // Serve static files
