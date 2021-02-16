@@ -11,6 +11,7 @@ import ListItemText from '@material-ui/core/ListItemText'
 import MenuIcon from '@material-ui/icons/Menu'
 import Button from '@material-ui/core/Button'
 import Drawer from '@material-ui/core/Drawer'
+import Divider from '@material-ui/core/Divider'
 
 
 
@@ -63,26 +64,31 @@ const NavDrawer = () => {
                         <ListItem button>
                             <ListItemText primary={loginLinkData.text} />
                         </ListItem>
+                        <Divider />
                     </Link>
                     <Link to="/search">
                         <ListItem>
                             <ListItemText primary="Search" />
                         </ListItem>
+                        <Divider />
                     </Link>
                     <Link to="/favorites">
                         <ListItem button>
                             <ListItemText primary="Favorites" />
                         </ListItem>
+                        <Divider />
                     </Link>
                     <Link to="/friends">
                         <ListItem button>
                             <ListItemText primary="Friends" />
                         </ListItem>
+                        <Divider />
                     </Link>
                     <Link to="/pear">
                         <ListItem button>
                             <ListItemText primary="Start Pairing" />
                         </ListItem>
+                        <Divider />
                     </Link>
                     <ListItem button onClick={logOut}>
                         <ListItemText primary="Log Out"  />
