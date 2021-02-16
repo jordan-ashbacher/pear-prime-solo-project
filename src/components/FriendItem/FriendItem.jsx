@@ -1,6 +1,7 @@
 import "./FriendItem.css"
 import {useDispatch} from 'react-redux'
 import { makeStyles } from "@material-ui/core/styles"
+import { useState } from 'react'
 import ListItem from "@material-ui/core/ListItem"
 import ListItemIcon from "@material-ui/core/ListItemIcon"
 import ListItemSecondaryAction from "@material-ui/core/ListItemSecondaryAction"
@@ -9,6 +10,7 @@ import AccountIcon from "@material-ui/icons/AccountCircle"
 import Button from '@material-ui/core/Button'
 import Typography from '@material-ui/core/Typography'
 import Divider from '@material-ui/core/Divider'
+import Snackbar from '@material-ui/core/Snackbar'
 
 const useStyles = makeStyles({
   item: {
@@ -32,12 +34,19 @@ const useStyles = makeStyles({
 
 const FriendItem = ({ user }) => {
     const dispatch = useDispatch()
-    const fullName = `${user.first_name} ${user.last_name}`
     const classes = useStyles()
+    const fullName = `${user.first_name} ${user.last_name}`
+
+    const [openSnack, setOpenSnack] = useState(false)
 
     const addFriend = () => {
         dispatch({ type: 'ADD_FRIEND', payload: user.id})
+        setOpenSnack(true)
     } 
+
+    const handleClose = () => {
+      setOpenSnack(false)
+    }
 
   return (
     <>
@@ -56,7 +65,19 @@ const FriendItem = ({ user }) => {
          />
       <ListItemSecondaryAction>
         <Button onClick={addFriend} className={classes.button} variant="outlined">Add Friend</Button>
+        
       </ListItemSecondaryAction>
+      <Snackbar
+            anchorOrigin={{
+              vertical: 'bottom',
+              horizontal: 'center'
+            }}
+            open={openSnack}
+            onClose={handleClose}
+            autoHideDuration={3000}
+            message="Added to friends"
+          >
+      </Snackbar>
     </ListItem>
     <Divider />
     </>
