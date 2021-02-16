@@ -30,7 +30,6 @@ const useStyles = makeStyles({
 
 const FriendPage = () => {
     const dispatch = useDispatch()
-    const history = useHistory()
     const classes = useStyles()
 
     useEffect(() => dispatch({ type: 'FETCH_USERS' }), [])
@@ -58,7 +57,7 @@ const FriendPage = () => {
             value={userQuery}
             placeholder="Name, username..."
             onChange={(e) => setUserQuery(e.target.value)}
-            inputProps={{'aria-label': 'Young Joni, sushi...'}}
+            inputProps={{'aria-label': 'Name, username...'}}
           />
           <IconButton
           type="submit"

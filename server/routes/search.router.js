@@ -62,4 +62,25 @@ router.get('/user/:query', rejectUnauthenticated, (req, res) => {
 
 })
 
+router.get('/friends/:query', rejectUnauthenticated, (req, res) => {
+  const searchText = `%${req.params.query}%`
+  const query = `SELECT "user".id, "user".first_name, "user".last_name, "user".username, "user".current_location FROM friend
+  JOIN "user" ON "user".id = friend.user2_id
+  WHERE user1_id = $1 AND (first_name ILIKE $2 OR last_name ILIKE $2 OR username ILIKE $2)
+  UNION
+  SELECT "user".id, "user".first_name, "user".last_name, "user".username, "user".current_location FROM friend
+  JOIN "user" ON "user".id = friend.user1_id
+  WHERE user2_id = $1 AND (first_name ILIKE $2 OR last_name ILIKE $2 OR username ILIKE $2);`
+
+  pool
+  .query(query, [req.user.id, searchText])
+  .then(results => {
+    console.log(results.rows)
+    res.send(results.rows)
+  })
+  .catch(err => {
+    console.log(err)
+  })
+})
+
 module.exports = router;

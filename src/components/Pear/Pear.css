@@ -1,0 +1,24 @@
+.pairContainer {
+    height: 100%;
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    width: 100%;
+}
+
+.pairForm {
+    display: flex;
+    flex-flow: row;
+    justify-content: center;
+    height: 50px;
+    /* border: 2px solid white; */
+    width: 300px;
+    margin: 10px;
+}
+
+.pairTitle {
+    color: white;
+    font-family: 'Nunito', sans-serif;
+    margin-top: 15px;
+    margin-bottom: 0; 
+}

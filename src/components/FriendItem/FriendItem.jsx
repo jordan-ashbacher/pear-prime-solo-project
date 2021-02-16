@@ -1,32 +1,65 @@
 import "./FriendItem.css"
 import {useDispatch} from 'react-redux'
+import { makeStyles } from "@material-ui/core/styles"
 import ListItem from "@material-ui/core/ListItem"
 import ListItemIcon from "@material-ui/core/ListItemIcon"
 import ListItemSecondaryAction from "@material-ui/core/ListItemSecondaryAction"
 import ListItemText from "@material-ui/core/ListItemText"
-import ListSubheader from "@material-ui/core/ListSubheader"
 import AccountIcon from "@material-ui/icons/AccountCircle"
 import Button from '@material-ui/core/Button'
-import { actionChannel } from "redux-saga/effects"
+import Typography from '@material-ui/core/Typography'
+import Divider from '@material-ui/core/Divider'
+
+const useStyles = makeStyles({
+  item: {
+    color: "#677F6A",
+    background: "#fafafa",
+  },
+  button: {
+    color: "#677F6A"
+  },
+  icon: {
+    color: "#677F6A"
+  },
+  primary: {
+    color: "#677F6A"
+  },
+  secondary: {
+    color: "#677F6A", 
+    fontSize: "0.875rem"
+  }
+})
 
 const FriendItem = ({ user }) => {
     const dispatch = useDispatch()
     const fullName = `${user.first_name} ${user.last_name}`
+    const classes = useStyles()
 
     const addFriend = () => {
         dispatch({ type: 'ADD_FRIEND', payload: user.id})
     } 
 
   return (
-    <ListItem>
+    <>
+    <ListItem className={classes.item}>
       <ListItemIcon>
-        <AccountIcon />
+        <AccountIcon className={classes.icon} />
       </ListItemIcon>
-      <ListItemText primary={fullName} secondary={user.username} />
+      <ListItemText primary={
+        <Typography variant="body1" className={classes.primary}>
+          {fullName} 
+        </Typography>}
+        secondary={
+        <Typography component="p" display="block" className={classes.secondary}>
+          {user.username}
+        </Typography>}
+         />
       <ListItemSecondaryAction>
-        <Button onClick={addFriend}>Add Friend</Button>
+        <Button onClick={addFriend} className={classes.button} variant="outlined">Add Friend</Button>
       </ListItemSecondaryAction>
     </ListItem>
+    <Divider />
+    </>
   )
 }
 

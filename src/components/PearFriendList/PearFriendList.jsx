@@ -9,15 +9,14 @@ import List from '@material-ui/core/List'
 const useStyles = makeStyles((theme) => ({
     root: {
       width: '100%',
-      // maxWidth: 360,
+      maxWidth: 360,
       margin: "0"
     },
   }));
 
 const PearFriendList = () => {
 
-    const dispatch = useDispatch()
-    useEffect(() => dispatch({ type: 'FETCH_FRIENDS'}), [])
+    
 
     const friends = useSelector(store => store.friends)
 
@@ -25,15 +24,12 @@ const PearFriendList = () => {
     const classes = useStyles();
     // const users = useSelector((store) => store.friendSearch)
 
-    return (
-      <>
-        <h1 className="matchTitle">Match Your Tastes </h1>
+    return (       
         <List className={classes.root}>
             {friends.friendReducer.map((friend) => {
             return <PearFriendItem key={friend.id} friend={friend} />
             })}
       </List>
-      </>
     )
 }
 

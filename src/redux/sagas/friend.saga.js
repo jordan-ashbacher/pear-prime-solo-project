@@ -37,6 +37,17 @@ import { put, takeEvery } from 'redux-saga/effects';
       console.log(err)
     }
   }
+
+  function* searchFriends(action) {
+    try {
+      const searchQuery = action.payload
+      console.log(searchQuery)
+      const response = yield axios.get(`api/search/friends/${searchQuery}`)
+      yield put({ type: 'SET_FRIENDS_SEARCH', payload: response.data}) 
+    } catch(err) {
+      console.log(err)
+    }
+  }
     
 
 function* friendsSaga() {
@@ -44,6 +55,7 @@ function* friendsSaga() {
     yield takeEvery('SEARCH_USERS', searchUsers)
     yield takeEvery('ADD_FRIEND', addFriend)
     yield takeEvery('FETCH_FRIENDS', fetchFriends)
+    yield takeEvery('SEARCH_FRIENDS', searchFriends)
 }
 
 export default friendsSaga
