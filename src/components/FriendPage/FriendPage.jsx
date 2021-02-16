@@ -2,13 +2,14 @@ import './FriendPage.css'
 import FriendList from '../FriendList/FriendList'
 import { useState, useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
-import { useHistory } from "react-router-dom"
+
 import { makeStyles } from '@material-ui/core/styles'
 import InputBase from '@material-ui/core/InputBase'
 import IconButton from '@material-ui/core/IconButton'
 import Divider from '@material-ui/core/Divider'
 import SearchIcon from '@material-ui/icons/Search'
 import ClearIcon from '@material-ui/icons/Clear'
+import Button from '@material-ui/core/Button'
 
 const useStyles = makeStyles({
   input: {
@@ -25,6 +26,10 @@ const useStyles = makeStyles({
   divider: {
     height: "30px",
     background: "#fafafa"
+  },
+  button: {
+    color: '#fafafa',
+    border: "1px solid #fafafa"
   }
 })
 
@@ -36,14 +41,21 @@ const FriendPage = () => {
 
     
     const [userQuery, setUserQuery] = useState('')
+    const [searchToggle, setSearchToggle] = useState(false)
     
     const searchUsers = (e) => {
        dispatch({ type: 'SEARCH_USERS', payload: userQuery})
+       setSearchToggle(true)
        setUserQuery('')
     }
 
     const clearSearch = () => {
       setNewQuery("")
+    }
+
+    const showFriends = () => {
+      dispatch({ type: 'FETCH_FRIENDS'})
+      setSearchToggle(false)
     }
     
     return (
@@ -76,6 +88,12 @@ const FriendPage = () => {
         </IconButton>
           </form>
         <FriendList />
+        {searchToggle ? (
+        <Button className={classes.button} variant="outlined" onClick={showFriends}>Show All Friends</Button>
+      ) : (
+        <>
+        </>
+      )}
         
         </div>
     )

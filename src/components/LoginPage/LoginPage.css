@@ -1,0 +1,4 @@
+.loginPageContainer {
+    display: flex; 
+    flex-flow: column;
+}

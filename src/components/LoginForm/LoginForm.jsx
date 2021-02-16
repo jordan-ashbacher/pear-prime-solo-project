@@ -1,12 +1,24 @@
 import React, { useState } from 'react';
+import './LoginForm.css'
 import { useDispatch } from 'react-redux';
 import {useSelector} from 'react-redux';
+import Button from '@material-ui/core/Button'
+import { makeStyles } from '@material-ui/core/styles'
+
+const useStyles = makeStyles({
+  button: {
+    color: "#fafafa",
+    background: "#677f6A",
+    marginTop: "10px"
+  }
+})
 
 function LoginForm() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const errors = useSelector(store => store.errors);
   const dispatch = useDispatch();
+  const classes = useStyles()
 
   const login = (event) => {
     event.preventDefault();
@@ -26,38 +38,40 @@ function LoginForm() {
 
   return (
     <form className="formPanel" onSubmit={login}>
-      <h2>Login</h2>
+      <h2 className="loginTitle">Login</h2>
       {errors.loginMessage && (
         <h3 className="alert" role="alert">
           {errors.loginMessage}
         </h3>
       )}
       <div>
-        <label htmlFor="username">
-          Username:
+
           <input
             type="text"
             name="username"
             required
             value={username}
             onChange={(event) => setUsername(event.target.value)}
+            placeholder="Username"
           />
-        </label>
+
       </div>
       <div>
-        <label htmlFor="password">
-          Password:
+
           <input
             type="password"
             name="password"
             required
             value={password}
             onChange={(event) => setPassword(event.target.value)}
+            placeholder="Password"
           />
-        </label>
+
       </div>
       <div>
-        <input className="btn" type="submit" name="submit" value="Log In" />
+        <Button className={classes.button} type="submit" name="submit" value="Log In" variant="contained" >
+          Log In
+        </Button>
       </div>
     </form>
   );
