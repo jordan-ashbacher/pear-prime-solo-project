@@ -23,6 +23,9 @@ const useStyles = makeStyles({
     background: "#fafafa",
     color: "#677F6A"
   },
+  actions: {
+    background: "#fafafa"
+  }
 })
 
 // creates card for individual restaurant
@@ -63,7 +66,7 @@ const RestaurantItem = ({ restaurant }) => {
             </Typography>
           </CardContent>
         </CardActionArea>
-        <CardActions>
+        <CardActions className={classes.actions}>
           <Button 
             variant="outlined" 
             onClick={addFavorite}
