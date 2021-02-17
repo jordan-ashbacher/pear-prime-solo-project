@@ -24,14 +24,10 @@ import Link from '@material-ui/core/Link'
 const useStyles = makeStyles({
     media: {
       width: "100%",
-      maxHeight: "100%",
+      maxHeight: "300px",
     },
     container: {
         marginBottom: "10px",
-    },
-    card: {
-      width: "400px",
-      height: "600px"
     },
     content: {
       background: "#fafafa",
@@ -47,13 +43,12 @@ const useStyles = makeStyles({
       fontWeight: 'bolder',
       letterSpacing: '.1rem'
     },
-    rating: {
-      color: '#677f6A',
-      marginTop: '10px',
-    },
     link: {
       display: "block",
       marginTop: "5px"
+    },
+    card: {
+      maxWidth: "300px"
     }
   })
 

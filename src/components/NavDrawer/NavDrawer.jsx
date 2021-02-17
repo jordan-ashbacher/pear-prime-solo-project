@@ -61,14 +61,14 @@ const NavDrawer = () => {
             <Drawer className={classes.fullList} anchor="bottom" open={state} onClose={toggleDrawer({bottom: false})} onClick={toggleDrawer({bottom: false})} onKeyDown={toggleDrawer({bottom: false})}>
                 <List>
                     <Link to={loginLinkData.path}>
-                        <ListItem button>
+                        <ListItem>
                             <ListItemText primary={loginLinkData.text} />
                         </ListItem>
                         <Divider />
                     </Link>
                     <Link to="/search">
                         <ListItem>
-                            <ListItemText primary="Search" />
+                            <ListItemText primary="Search Restaurants" />
                         </ListItem>
                         <Divider />
                     </Link>

@@ -65,9 +65,9 @@ const FriendItem = ({ user }) => {
          />
       <ListItemSecondaryAction>
         <Button onClick={addFriend} className={classes.button} variant="outlined">Add Friend</Button>
-        
       </ListItemSecondaryAction>
-      <Snackbar
+    </ListItem>
+    <Snackbar
             anchorOrigin={{
               vertical: 'bottom',
               horizontal: 'center'
@@ -78,7 +78,6 @@ const FriendItem = ({ user }) => {
             message="Added to friends"
           >
       </Snackbar>
-    </ListItem>
     <Divider />
     </>
   )
