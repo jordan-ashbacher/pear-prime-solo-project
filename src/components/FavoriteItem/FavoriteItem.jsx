@@ -2,6 +2,7 @@ import './FavoriteItem.css'
 import { useState } from 'react'
 import { useDispatch } from "react-redux"
 import { makeStyles } from "@material-ui/core/styles"
+import { useHistory } from 'react-router-dom'
 import Card from "@material-ui/core/Card"
 import CardActionArea from "@material-ui/core/CardActionArea"
 import CardActions from "@material-ui/core/CardActions"
@@ -55,6 +56,7 @@ const useStyles = makeStyles({
 const FavoriteItem = ({ favorite }) => {
     const dispatch = useDispatch()
     const classes = useStyles()
+    const history = useHistory()
 
     //State variable for notes dialog box, text area and note content
     const [open, setOpen] = useState(false)
@@ -93,6 +95,12 @@ const FavoriteItem = ({ favorite }) => {
         dispatch({ type: 'REMOVE_FAVORITE', payload: favorite.favorite_id})
     }
 
+
+  const fetchDetails = () => {
+    dispatch({ type: "FETCH_DETAILS", payload: favorite.place_id})
+    history.push('/detail')
+  }
+
     return (
       <Container className={classes.container} maxWidth="sm">
       <Card className="card">
@@ -126,6 +134,13 @@ const FavoriteItem = ({ favorite }) => {
             onClick={removeFavorite}
           >
             Remove
+          </Button>
+          <Button 
+            variant="outlined" 
+            onClick={fetchDetails}
+            color="primary"
+          >
+            More Info
           </Button>
           <Button 
             variant="outlined" 

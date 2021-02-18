@@ -5,6 +5,7 @@ import search from './search.reducer'
 import restaurant from './restaurant.reducer'
 import friends from './friend.reducer'
 import matches from './match.reducer'
+import details from './detail.reducer'
 
 // rootReducer is the primary reducer for our entire project
 // It bundles up all of the other reducers so our project can use them.
@@ -19,6 +20,7 @@ const rootReducer = combineReducers({
   restaurant,
   friends,
   matches,
+  details,
 });
 
 export default rootReducer;

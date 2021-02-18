@@ -14,6 +14,7 @@ const restaurantRouter = require('./routes/restaurant.router')
 const locationRouter = require('./routes/location.router')
 const friendRouter = require('./routes/friends.router')
 const pairRouter = require('./routes/pair.router')
+const detailRouter = require('./routes/detail.router')
 
 
 // Body parser middleware
@@ -34,6 +35,7 @@ app.use('/api/restaurant', restaurantRouter)
 app.use('/api/location', locationRouter)
 app.use('/api/friends', friendRouter)
 app.use('/api/pair', pairRouter)
+app.use('/api/detail', detailRouter)
 
 
 // Serve static files
