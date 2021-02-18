@@ -41,8 +41,7 @@ const PearFriendItem = ({ friend }) => {
     const fullName = `${friend.first_name} ${friend.last_name}`
 
     const findMatches = () => {
-      console.log(friend.id)
-      dispatch({ type: 'FIND_MATCHES', payload: friend.id})
+      dispatch({ type: 'FIND_MATCHES', payload: friend.user_id})
       history.push('/matches')
     }
   
@@ -62,7 +61,7 @@ const PearFriendItem = ({ friend }) => {
           </Typography>}
          />
       <ListItemSecondaryAction>
-        <Button className={classes.button} onClick={findMatches}>Pair</Button>
+        <Button className={classes.button} variant="outlined" onClick={findMatches}>Pair</Button>
       </ListItemSecondaryAction>
     </ListItem>
     <Divider />

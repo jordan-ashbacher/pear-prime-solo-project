@@ -1,7 +1,7 @@
-import "./FriendItem.css"
-import { useDispatch } from "react-redux"
-import { useHistory } from 'react-router-dom'
+import "./UserItem.css"
+import {useDispatch} from 'react-redux'
 import { makeStyles } from "@material-ui/core/styles"
+import { useState } from 'react'
 import ListItem from "@material-ui/core/ListItem"
 import ListItemIcon from "@material-ui/core/ListItemIcon"
 import ListItemSecondaryAction from "@material-ui/core/ListItemSecondaryAction"
@@ -10,7 +10,7 @@ import AccountIcon from "@material-ui/icons/AccountCircle"
 import Button from '@material-ui/core/Button'
 import Typography from '@material-ui/core/Typography'
 import Divider from '@material-ui/core/Divider'
-
+import Snackbar from '@material-ui/core/Snackbar'
 
 const useStyles = makeStyles({
   item: {
@@ -32,22 +32,25 @@ const useStyles = makeStyles({
   }
 })
 
-const FriendItem = ({ friend }) => {
+const FriendItem = ({ user }) => {
+    const dispatch = useDispatch()
+    const classes = useStyles()
+    const fullName = `${user.first_name} ${user.last_name}`
 
-  const classes = useStyles()
-  const dispatch = useDispatch()
-  const history = useHistory()
-  
-    const fullName = `${friend.first_name} ${friend.last_name}`
+    const [openSnack, setOpenSnack] = useState(false)
 
-    const removeFriend = () => {
-      console.log(friend.friend_id)
-      dispatch({ type: 'REMOVE_FRIEND', payload: friend.friend_id})
+    const addFriend = () => {
+        dispatch({ type: 'ADD_FRIEND', payload: user.id})
+        setOpenSnack(true)
+    } 
+
+    const handleClose = () => {
+      setOpenSnack(false)
     }
-  
-    return (
-      <>
-    <ListItem key={friend.id} className={classes.item}>
+
+  return (
+    <>
+    <ListItem className={classes.item}>
       <ListItemIcon>
         <AccountIcon className={classes.icon} />
       </ListItemIcon>
@@ -56,14 +59,25 @@ const FriendItem = ({ friend }) => {
           {fullName} 
         </Typography>}
         secondary={
-          <Typography component="p" display="block" className={classes.secondary}>
-            {friend.username}
-          </Typography>}
+        <Typography component="p" display="block" className={classes.secondary}>
+          {user.username}
+        </Typography>}
          />
       <ListItemSecondaryAction>
-        <Button className={classes.button} variant="outlined" onClick={removeFriend}>Remove</Button>
+        <Button onClick={addFriend} className={classes.button} variant="outlined">Add Friend</Button>
       </ListItemSecondaryAction>
     </ListItem>
+    <Snackbar
+            anchorOrigin={{
+              vertical: 'bottom',
+              horizontal: 'center'
+            }}
+            open={openSnack}
+            onClose={handleClose}
+            autoHideDuration={3000}
+            message="Added a friend!"
+          >
+      </Snackbar>
     <Divider />
     </>
   )

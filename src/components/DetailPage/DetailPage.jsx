@@ -56,9 +56,13 @@ const DetailPage = () => {
     return (
         <div className={classes.detailContainer}>
         <h1 className={classes.title}>{restaurant.name}</h1>
-        <Link>
-            <h2 className={classes.h2}>{restaurant.address}</h2>
+        <Link
+            href={restaurant.website} 
+            target="_blank" rel="noopener" 
+        >
+            <h2 className={classes.h2}>{restaurant.website}</h2>
         </Link>
+        <h2 className={classes.h2}>{restaurant.address}</h2>
         <h2 className={classes.h2}>{restaurant.phone}</h2>
         <Container className={classes.container} maxWidth="sm">
             <Card className={classes.card}>

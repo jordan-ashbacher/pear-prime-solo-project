@@ -14,7 +14,6 @@ import Footer from '../Footer/Footer';
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 
 import AboutPage from '../AboutPage/AboutPage';
-import UserPage from '../UserPage/UserPage';
 import InfoPage from '../InfoPage/InfoPage';
 import LandingPage from '../LandingPage/LandingPage';
 import LoginPage from '../LoginPage/LoginPage';
@@ -23,7 +22,7 @@ import Home from '../Home/Home'
 import Search from '../Search/Search'
 import Favorites from '../Favorites/Favorites'
 import Pear from '../Pear/Pear'
-import FriendPage from '../FriendPage/FriendPage'
+import UserPage from '../UserPage/UserPage'
 import NavDrawer from '../NavDrawer/NavDrawer'
 import MatchPage from '../MatchPage/MatchPage'
 import DetailPage from '../DetailPage/DetailPage'
@@ -82,13 +81,13 @@ function App() {
             Visiting localhost:3000/user will show the UserPage if the user is logged in.
             If the user is not logged in, the ProtectedRoute will show the LoginPage (component).
             Even though it seems like they are different pages, the user is always on localhost:3000/user */}
-          <ProtectedRoute
+          {/* <ProtectedRoute
             // logged in shows UserPage else shows LoginPage
             exact
             path="/user"
           >
             <UserPage />
-          </ProtectedRoute>
+          </ProtectedRoute> */}
 
           <ProtectedRoute
             // logged in shows InfoPage else shows LoginPage
@@ -134,7 +133,7 @@ function App() {
             exact  
             path="/friends"
           >
-            <FriendPage />
+            <UserPage />
           </ProtectedRoute>
           
           <ProtectedRoute

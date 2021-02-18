@@ -57,11 +57,11 @@ router.get('/all', rejectUnauthenticated, (req, res) => {
 
   router.get('/', rejectUnauthenticated, (req, res) => {
       const userID = req.user.id
-      const query = `SELECT "user".id, "user".first_name, "user".last_name, "user".username, "user".current_location FROM friend
+      const query = `SELECT friend.id AS friend_id, "user".id AS user_id, "user".first_name, "user".last_name, "user".username, "user".current_location FROM friend
                     JOIN "user" ON "user".id = friend.user2_id
                     WHERE user1_id = $1
                     UNION
-                    SELECT "user".id, "user".first_name, "user".last_name, "user".username, "user".current_location FROM friend
+                    SELECT friend.id AS friend_id, "user".id AS user_id, "user".first_name, "user".last_name, "user".username, "user".current_location FROM friend
                     JOIN "user" ON "user".id = friend.user1_id
                     WHERE user2_id = $1;`
 
@@ -73,6 +73,20 @@ router.get('/all', rejectUnauthenticated, (req, res) => {
     .catch(err => {
         console.log('Error fetching friends:', err)
     })
+  })
+
+  router.delete('/remove/:friendID', rejectUnauthenticated, (req, res) => {
+      const friendID = req.params.friendID
+      const query = `DELETE FROM friend WHERE id = $1`
+
+      pool
+      .query(query, [friendID])
+      .then(results => {
+          res.sendStatus(200)
+      })
+      .catch(err => {
+          console.log(err)
+      })
   })
   
   module.exports = router;
