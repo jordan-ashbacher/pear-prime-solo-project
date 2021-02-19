@@ -4,12 +4,11 @@ import { useDispatch, useSelector } from "react-redux"
 import { makeStyles } from "@material-ui/core/styles"
 import Card from "@material-ui/core/Card"
 import CardActionArea from "@material-ui/core/CardActionArea"
-import CardActions from "@material-ui/core/CardActions"
-import CardContent from "@material-ui/core/CardContent"
 import CardMedia from '@material-ui/core/CardMedia'
 import Container from "@material-ui/core/Container"
-import Typography from '@material-ui/core/Typography'
 import Link from '@material-ui/core/Link'
+import Button from "@material-ui/core/Button"
+import Snackbar from '@material-ui/core/Snackbar'
 
 const useStyles = makeStyles({
     media: {
@@ -43,6 +42,11 @@ const useStyles = makeStyles({
         color: "#fafafa",
         marginTop: 0,
         marginBottom: "15px"
+    },
+    button: {
+        color: "#fafafa",
+        marginBottom: "15px",
+        borderColor: "#fafafa"
     }
 })
 
@@ -52,6 +56,19 @@ const DetailPage = () => {
 
     const restaurant = useSelector(store => store.details)
 
+    const [openSnack, setOpenSnack] = useState(false)
+
+    const addFavorite = () => {
+        // console.log(user)
+        // console.log(restaurant)
+        // dispatch({ type: "ADD_FAVORITE", payload: restaurant })
+        dispatch({ type: "ADD_RESTAURANT", payload: restaurant })
+        setOpenSnack(true)
+      }
+
+    const handleClose = () => {
+        setOpenSnack(false)
+    }
 
     return (
         <div className={classes.detailContainer}>
@@ -64,6 +81,13 @@ const DetailPage = () => {
         </Link>
         <h2 className={classes.h2}>{restaurant.address}</h2>
         <h2 className={classes.h2}>{restaurant.phone}</h2>
+        <Button 
+            variant="outlined" 
+            onClick={addFavorite}
+            className={classes.button}
+          >
+            Favorite
+          </Button>
         <Container className={classes.container} maxWidth="sm">
             <Card className={classes.card}>
                 <CardActionArea>
@@ -126,6 +150,16 @@ const DetailPage = () => {
                     />
                 </CardActionArea>
             </Card>
+            <Snackbar
+            anchorOrigin={{
+              vertical: 'bottom',
+              horizontal: 'center'
+            }}
+            open={openSnack}
+            onClose={handleClose}
+            autoHideDuration={3000}
+            message="Added to favorites"
+          ></Snackbar>
         </Container>
         </div>
     )
