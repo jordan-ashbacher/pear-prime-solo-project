@@ -4,12 +4,21 @@ import { useDispatch } from 'react-redux';
 import {useSelector} from 'react-redux';
 import Button from '@material-ui/core/Button'
 import { makeStyles } from '@material-ui/core/styles'
+import InputBase from '@material-ui/core/InputBase'
 
 const useStyles = makeStyles({
   button: {
     color: "#fafafa",
     background: "#677f6A",
     marginTop: "10px"
+  },
+  input: {
+    color: "#677F6A",
+    width: "100%",
+    height: "50px",
+    padding: "5px",
+    border: "2px solid #677F6A",
+    marginBottom: "10px"
   }
 })
 
@@ -46,25 +55,27 @@ function LoginForm() {
       )}
       <div>
 
-          <input
+          <InputBase
             type="text"
             name="username"
             required
             value={username}
             onChange={(event) => setUsername(event.target.value)}
             placeholder="Username"
+            className={classes.input}
           />
 
       </div>
       <div>
 
-          <input
+          <InputBase
             type="password"
             name="password"
             required
             value={password}
             onChange={(event) => setPassword(event.target.value)}
             placeholder="Password"
+            className={classes.input}
           />
 
       </div>

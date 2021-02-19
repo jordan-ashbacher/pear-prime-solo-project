@@ -3,12 +3,21 @@ import './RegisterForm.css'
 import { useDispatch, useSelector } from 'react-redux';
 import Button from '@material-ui/core/Button'
 import { makeStyles } from '@material-ui/core/styles'
+import InputBase from '@material-ui/core/InputBase'
 
 const useStyles = makeStyles({
   button: {
     color: "#fafafa",
     background: "#677f6A",
     marginTop: "10px"
+  },
+  input: {
+    color: "#677F6A",
+    width: "100%",
+    height: "50px",
+    padding: "5px",
+    border: "2px solid #677F6A",
+    marginBottom: "10px"
   }
 })
 
@@ -49,61 +58,66 @@ function RegisterForm() {
       )}
       <div>
         
-          <input
+          <InputBase
             type="text"
             name="firstName"
             value={newUser.firstName}
             required
             onChange={handleChange}
             placeholder="First Name"
+            className={classes.input}
           />
         
       </div>
       <div>
         
-          <input
+          <InputBase
             type="text"
             name="lastName"
             value={newUser.lastName}
             required
             onChange={handleChange}
             placeholder="Last Name"
+            className={classes.input}
           />
     
       </div>
       <div>
  
-          <input
+          <InputBase
             type="text"
             name="username"
             value={newUser.username}
             required
             onChange={handleChange}
             placeholder="Username"
+            className={classes.input}
           />
 
       </div>
       <div>
 
-          <input
+          <InputBase
             type="password"
             name="password"
             value={newUser.password}
             required
             onChange={handleChange}
             placeholder="Password"
+            className={classes.input}
           />
 
       </div>
       <div>
 
-          <input
+          <InputBase
             type="text"
             name="current_location"
             value={newUser.current_location}
             required
             onChange={handleChange}
             placeholder="City"
+            className={classes.input}
           />
 
       </div>
