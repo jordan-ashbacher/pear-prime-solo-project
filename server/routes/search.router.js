@@ -28,7 +28,7 @@ router.get('/:q', rejectUnauthenticated, (req, res) => {
   })
   .catch((err) => {
       console.log('Error in API request', err)
-      res.sendStatus(err)
+      res.sendStatus(500)
   })
 });
 
