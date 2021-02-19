@@ -12,6 +12,7 @@ import Button from "@material-ui/core/Button"
 import Typography from "@material-ui/core/Typography"
 import Container from "@material-ui/core/Container"
 import TextareaAutosize from '@material-ui/core/TextareaAutosize'
+import TextField from '@material-ui/core/TextField'
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContentText from '@material-ui/core/DialogContentText';
@@ -19,6 +20,8 @@ import DialogTitle from '@material-ui/core/DialogTitle';
 import EditIcon from '@material-ui/icons/Create'
 import SaveIcon from '@material-ui/icons/Save'
 import Link from '@material-ui/core/Link'
+import ClearIcon from '@material-ui/icons/Clear'
+import Divider from '@material-ui/core/Divider'
 
 
 // sets Material-UI styles
@@ -50,6 +53,20 @@ const useStyles = makeStyles({
     },
     card: {
       maxWidth: "300px"
+    },
+    dialog: {
+      color: "#677F6A",
+      paddingLeft: "10px",
+      paddingRight: "10px"
+    },
+    notes: {
+      color: "#677F6A",
+      border: "1px solid #677F6A",
+      font: "400 16px 'Nunito Sans'"
+    },
+    divider: {
+      height: "30px",
+      background: "#677F6A"
     }
   })
 
@@ -61,7 +78,6 @@ const FavoriteItem = ({ favorite }) => {
     //State variable for notes dialog box, text area and note content
     const [open, setOpen] = useState(false)
     const [edit, setEdit] = useState(false)
-    const [rating, setRating] = useState(favorite.rating)
     const [noteText, setNoteText] = useState(favorite.notes)
 
     //Sets state for notes dialog box
@@ -155,22 +171,28 @@ const FavoriteItem = ({ favorite }) => {
             aria-labelledby="form-dialog-title"
             fullWidth={true} 
           >
-            <DialogTitle id="form-dialog-title">Notes</DialogTitle>
             {!edit ? (
               <>
-              <DialogContentText>
+              <DialogTitle className={classes.dialog} id="form-dialog-title">Notes</DialogTitle>
+              <DialogContentText className={classes.dialog}>
               {favorite.notes}
               </DialogContentText>
               <DialogActions>
                 <Button onClick={toggleEdit} color="primary"><EditIcon /></Button>
+                <Divider className={classes.divider} orientation="vertical" />
+                <Button onClick={handleClose} color="primary"><ClearIcon /></Button>
               </DialogActions>
               </>
             ) : (
               <>
-              <TextareaAutosize
-                rowsMin={5}
+              <TextField 
+                placeholder="Notes"
+                multiline
+                variant="outlined"
+                rows={15}
                 value={noteText}
                 onChange={(e) => setNoteText(e.target.value)}
+                className={classes.notes}
               />
               <Button 
                 variant='outlined' 
