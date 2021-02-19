@@ -25,6 +25,10 @@ const useStyles = makeStyles({
       background: "#fafafa",
       color: "#677F6A"
     },
+    content: {
+      background: "#fafafa",
+      color: "#677F6A"
+    }
   })
 
 const MatchItem = ({ match }) => {
@@ -48,7 +52,7 @@ const MatchItem = ({ match }) => {
                 alt=""
                 className={classes.media}
               />
-              <CardContent>
+              <CardContent className={classes.content}>
                 <Typography gutterBottom variant="h5" component="h2">
                   {match.name}
                 </Typography>

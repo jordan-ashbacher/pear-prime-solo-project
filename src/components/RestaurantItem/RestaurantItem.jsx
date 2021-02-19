@@ -32,7 +32,7 @@ const useStyles = makeStyles({
 
 // creates card for individual restaurant
 const RestaurantItem = ({ restaurant }) => {
-  console.log(restaurant.image)
+  // console.log(restaurant.image)
   const dispatch = useDispatch()
   const classes = useStyles()
   const history = useHistory()
@@ -48,7 +48,7 @@ const RestaurantItem = ({ restaurant }) => {
   }
 
   const fetchDetails = () => {
-    console.log(restaurant.place_id)
+    // console.log(restaurant.place_id)
     dispatch({ type: "FETCH_DETAILS", payload: restaurant.place_id})
     history.push('/detail')
   }
