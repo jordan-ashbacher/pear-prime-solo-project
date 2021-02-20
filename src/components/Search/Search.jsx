@@ -12,7 +12,7 @@ import ClearIcon from '@material-ui/icons/Clear'
 
 const useStyles = makeStyles({
   input: {
-    color: "white",
+    color: "primary",
     width: "70%",
     height: "50px",
     padding: "5px"
@@ -57,7 +57,7 @@ const Search = () => {
           value={newQuery}
           placeholder="Young Joni, sushi..."
           onChange={(e) => setNewQuery(e.target.value)}
-          inputProps={{'aria-label': 'Young Joni, sushi...'}}
+          // inputProps={{classes: {input: classes.input}}}
         />
         <IconButton
           type="submit"

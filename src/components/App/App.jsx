@@ -49,6 +49,18 @@ const theme = createMuiTheme({
       fontFamily: "'Brightfate', sans-serif",
     }
   },
+  overrides: {
+    MuiInputBase: {
+      input: {
+        "&::placeholder": {
+          color: "#fafafa",
+          fontWeight: "900",
+          opacity: "1"
+        },
+        color: "#fafafa", 
+      }
+    }
+  }
   
 })
 
