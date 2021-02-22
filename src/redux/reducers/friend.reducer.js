@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux'
 
-const friendSearchReducer = (state = [], action) => {
+export const friendSearchReducer = (state = [], action) => {
     switch (action.type) {
       case 'SET_ALL_USERS':
         return action.payload
@@ -11,7 +11,7 @@ const friendSearchReducer = (state = [], action) => {
     }
   }
 
-  const friendReducer = (state = [], action) => {
+  export const friendReducer = (state = [], action) => {
     switch(action.type) {
       case 'SET_FRIENDS':
         return action.payload
