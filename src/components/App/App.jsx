@@ -53,11 +53,12 @@ const theme = createMuiTheme({
     MuiInputBase: {
       input: {
         "&::placeholder": {
-          color: "#fafafa",
+          color: "#677F6A",
           fontWeight: "900",
           opacity: "1"
         },
-        color: "#fafafa", 
+        color: "#677F6A", 
+        fontWeight: "900"
       }
     }
   }

@@ -58,7 +58,7 @@ const NavDrawer = () => {
     return (
         <div className="navContainer">
             <Button onClick={toggleDrawer(true)}><MenuIcon className={classes.navIcon} /></Button>
-            <Drawer className={classes.fullList} anchor="bottom" open={state} onClose={toggleDrawer({bottom: false})} onClick={toggleDrawer({bottom: false})} onKeyDown={toggleDrawer({bottom: false})}>
+            <Drawer className={classes.fullList} anchor="top" open={state} onClose={toggleDrawer({top: false})} onClick={toggleDrawer({top: false})} onKeyDown={toggleDrawer({top: false})}>
                 <List>
                     <Link to={loginLinkData.path}>
                         <ListItem>

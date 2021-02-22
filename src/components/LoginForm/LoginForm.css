@@ -5,3 +5,11 @@
    margin-bottom: 20px;
    margin-top: 0px;
 }
+
+.appLoginTitle {
+    color: #fafafa;
+    margin-top: 5px;
+    font-family: 'Brightfate';
+    margin-bottom: 0px;
+    font-size: 72px;
+}

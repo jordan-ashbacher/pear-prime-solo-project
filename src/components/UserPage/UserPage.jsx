@@ -22,15 +22,15 @@ const useStyles = makeStyles({
   iconButton: {
     height: "50px",
     padding: "10px",
-    color: "#fafafa",
+    color: "##677F6A",
   },
   divider: {
     height: "30px",
-    background: "#fafafa"
+    background: "#677F6A"
   },
   button: {
-    color: '#fafafa',
-    border: "1px solid #fafafa"
+    color: '#677F6A',
+    border: "1px solid #677F6A"
   }
 })
 

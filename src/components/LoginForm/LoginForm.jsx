@@ -46,7 +46,9 @@ function LoginForm() {
   }; // end login
 
   return (
+    <>
     <form className="formPanel" onSubmit={login}>
+    <h1 className="appLoginTitle">PEAR</h1>
       <h2 className="loginTitle">Login</h2>
       {errors.loginMessage && (
         <h3 className="alert" role="alert">
@@ -85,6 +87,7 @@ function LoginForm() {
         </Button>
       </div>
     </form>
+    </>
   );
 }
 

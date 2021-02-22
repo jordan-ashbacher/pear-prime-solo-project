@@ -62,6 +62,7 @@ const useStyles = makeStyles({
     notes: {
       color: "#677F6A",
       border: "1px solid #677F6A",
+      background: "#fafafa",
       font: "400 16px 'Nunito Sans'"
     },
     divider: {
@@ -193,6 +194,7 @@ const FavoriteItem = ({ favorite }) => {
                 value={noteText}
                 onChange={(e) => setNoteText(e.target.value)}
                 className={classes.notes}
+                color="primary"
               />
               <Button 
                 variant='outlined' 

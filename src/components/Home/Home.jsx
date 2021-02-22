@@ -23,6 +23,11 @@ const useStyles = makeStyles({
     marginBottom: "10px"
   },
   input: {
+        "&::placeholder": {
+          color: "#677F6A",
+          fontWeight: "900",
+          opacity: "1"
+        },
     color: "#677F6A",
     width: "70%",
     height: "50px",
@@ -128,7 +133,7 @@ const Home = () => {
           className={classes.button}
           onClick={pushToSearch}
         >
-          Add Your Favorite Restaurants
+          Find Your Favorite Restaurants
         </Button>
         <Button
           variant="contained"
