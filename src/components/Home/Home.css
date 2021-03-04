@@ -1,6 +1,10 @@
 @font-face {
     font-family: 'Brightfate';
     src: local('../../fonts/Brightfate/BrightfateRegular.woff') format('woff');
+    src: local('../../fonts/Brightfate/BrightfateRegular.eot') format('eot');
+    src: local('../../fonts/Brightfate/BrightfateRegular.svg') format('svg');
+    src: local('../../fonts/Brightfate/BrightfateRegular.ttf') format('ttf');
+    src: local('../../fonts/Brightfate/BrightfateRegular.woff2') format('woff2')
   }
 
 .homeContainer {
